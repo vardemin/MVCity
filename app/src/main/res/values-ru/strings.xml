@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ВГороде</string>
+    <string name="action_sign_in_short">Войти</string>
+    <string name="action_sign_in">Врйти или зарегистрироваться</string>
+    <string name="error_field_required">Обязательное поле</string>
+    <string name="error_incorrect_password">Пароль неверный</string>
+    <string name="error_invalid_email">Почти не вилидна</string>
+    <string name="error_invalid_password">Слишком короткий пароль</string>
+    <string name="nav_event">События</string>
+    <string name="nav_life">Жизнь</string>
+    <string name="nav_meetings">Встречи</string>
+    <string name="nav_profile">Профиль</string>
+    <string name="prompt_email">Почта</string>
+    <string name="prompt_password" translatable="false">Пароль</string>
+</resources>

@@ -63,7 +63,10 @@ dependencies {
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
     compile 'com.roughike:bottom-bar:2.3.1'
 
+    //UI
     compile 'com.roughike:bottom-bar:2.3.1'
+    compile 'com.ncapdevi:frag-nav:2.0.2'
+
 
     testCompile 'junit:junit:4.12'
 }

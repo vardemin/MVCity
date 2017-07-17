@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs xmlns:android="http://schemas.android.com/apk/res/android">
+    <tab id="@+id/tab_life"
+        icon="@drawable/ic_geo_marker"
+        title="@string/nav_life"/>
+</tabs>

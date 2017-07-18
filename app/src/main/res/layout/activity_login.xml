@@ -8,8 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.vardemin.vcity.LoginActivity"
-    android:background="@color/colorBlack">
+    tools:context="com.vardemin.vcity.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -33,9 +32,7 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:textColorHint="@color/colorBack">
+                android:layout_height="wrap_content">
 
                 <AutoCompleteTextView
                     android:id="@+id/email"
@@ -52,9 +49,7 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:textColorHint="@color/colorBack">
+                android:layout_height="wrap_content">
 
                 <EditText
                     android:id="@+id/password"
@@ -75,6 +70,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
 

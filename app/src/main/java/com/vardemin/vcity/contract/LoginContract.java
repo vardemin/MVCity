@@ -1,17 +1,13 @@
 package com.vardemin.vcity.contract;
 
-import com.vardemin.vcity.presenter.BasePresenter;
+public interface LoginContract {
 
-public class LoginContract {
-
-    interface View {
-        void setLoading(boolean state);
+    interface View extends MVPContract.View {
         void login();
-        void onAuthorized();
-        void showError(String errorMessage);
+        void showLoginError(String err);
     }
 
-    interface Presenter extends BasePresenter<View> {
-        void login(String code);
+    interface Presenter extends MVPContract.Presenter {
+        void requestLogin(String code);
     }
 }

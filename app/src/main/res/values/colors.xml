@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFF</color>
-    <color name="colorPrimaryDark">#fafafa</color>
-    <color name="colorAccent">#000</color>
+    <color name="colorPrimaryDark">#BDBDBD</color>
+    <color name="colorAccent">#2979FF</color>
+    <color name="textColorPrimary">#000</color>
+    <color name="windowBackground">#FFF</color>
     <color name="colorWhite">#FFF</color>
     <color name="colorBlack">#000</color>
+    <color name="colorDarkGrey">#303030</color>
     <color name="colorBack">#fafafa</color>
 </resources>

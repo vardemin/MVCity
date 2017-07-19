@@ -5,12 +5,10 @@ import java.util.Date;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class Comment extends RealmObject {
+
+public class Photo extends RealmObject {
     @PrimaryKey
-    private String id;
+    private String _id;
     private User user;
-    private Event event;
-    private String text;
     private Date createdAt;
-    private Date updatedAt;
 }

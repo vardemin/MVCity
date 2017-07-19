@@ -1,10 +1,18 @@
 package com.vardemin.vcity.model;
 
-import io.realm.RealmObject;
+import java.util.Date;
 
-/**
- * Created by SimUser on 18.07.2017.
- */
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Institution extends RealmObject {
+    @PrimaryKey
+    private String id;
+    private String name;
+    private String description;
+    private RealmList<Photo> photos;
+    private RealmList<LocationNumber> location;
+    private User owner;
+    private RealmList<User> responsible;
 }

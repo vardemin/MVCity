@@ -1,10 +1,14 @@
 package com.vardemin.vcity.model;
 
+import java.util.Date;
+
 import io.realm.RealmObject;
 
-/**
- * Created by SimUser on 18.07.2017.
- */
 
 public class Review extends RealmObject {
+    private User user;
+    private Institution institution;
+    private String text;
+    private int mark;
+    private Date createdAt;
 }

@@ -5,4 +5,5 @@ package com.vardemin.vcity.di.component;
  */
 
 public class ApplicationComponent {
+
 }

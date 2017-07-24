@@ -1,5 +1,6 @@
 package com.vardemin.vcity.data.remote;
 
+import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.Socket;
 
 /**
@@ -11,5 +12,35 @@ public class RemoteDataRepository implements IRemoteDataRepository {
 
     public RemoteDataRepository(Socket socket) {
         this.socket = socket;
+
     }
+
+    @Override
+    public void connect() {
+        socket.connect();
+    }
+
+    @Override
+    public void disconnect() {
+        socket.disconnect();
+    }
+
+    @Override
+    public boolean isConnected() {
+        if(socket!=null)
+            return socket.connected();
+        else return false;
+    }
+
+    @Override
+    public void listenOn(String eventName, Emitter.Listener listener) {
+        socket.on(eventName, listener);
+    }
+
+    @Override
+    public void offListenOn(String eventName, Emitter.Listener listener) {
+        socket.off(eventName, listener);
+    }
+
+
 }

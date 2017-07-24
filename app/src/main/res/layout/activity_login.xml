@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.vardemin.vcity.LoginActivity"
+    tools:context="com.vardemin.vcity.ui.activity.LoginActivity"
     android:background="@color/colorDarkGrey">
 
     <!-- Login progress -->
@@ -39,6 +39,7 @@
                 android:textColorHighlight="@color/colorAccent">
 
                 <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"/>

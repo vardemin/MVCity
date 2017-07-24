@@ -1,4 +1,4 @@
-package com.vardemin.vcity;
+package com.vardemin.vcity.ui.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -29,6 +29,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.vardemin.vcity.R;
+import com.vardemin.vcity.contract.LoginContract;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +40,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor>, LoginContract.View{
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -277,6 +280,26 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
+    }
+
+    @Override
+    public void login() {
+
+    }
+
+    @Override
+    public void showLoginError(String err) {
+
+    }
+
+    @Override
+    public void showLoading(boolean state) {
+
+    }
+
+    @Override
+    public void showError(String err) {
+
     }
 
 

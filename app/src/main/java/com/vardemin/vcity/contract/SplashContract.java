@@ -6,7 +6,8 @@ package com.vardemin.vcity.contract;
 
 public interface SplashContract {
     interface View extends MVPContract.View {
-
+        void navigateLoginScreen();
+        void navigateMainScreen();
     }
 
     interface Presenter extends MVPContract.Presenter {

@@ -5,4 +5,7 @@ package com.vardemin.vcity.data.local;
  */
 
 public interface ILocalDataRepository {
+    String getToken();
+    boolean verifyToken();
+    void cacheToken(String token);
 }

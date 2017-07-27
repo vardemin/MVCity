@@ -1,6 +1,7 @@
 package com.vardemin.vcity.data.remote;
 
 import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.Ack;
 import com.github.nkzawa.socketio.client.Socket;
 
 /**
@@ -40,6 +41,11 @@ public class RemoteDataRepository implements IRemoteDataRepository {
     @Override
     public void offListenOn(String eventName, Emitter.Listener listener) {
         socket.off(eventName, listener);
+    }
+
+    @Override
+    public void emit(String eventName, Object data, Ack ack) {
+        socket.emit(eventName,(Object[])data, ack);
     }
 
 

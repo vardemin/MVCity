@@ -56,7 +56,9 @@ dependencies {
     compile 'io.realm:android-adapters:2.1.0'
 
     compile 'com.github.nkzawa:socket.io-client:0.3.0'
-    compile 'com.roughike:bottom-bar:2.3.1'
+
+    compile 'com.google.code.gson:gson:2.8.1'
+
 
     //UI
     compile 'com.roughike:bottom-bar:2.3.1'

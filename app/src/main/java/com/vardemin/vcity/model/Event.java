@@ -1,5 +1,7 @@
 package com.vardemin.vcity.model;
 
+import com.vardemin.vcity.model.other.LocationNumber;
+
 import java.util.Date;
 
 import io.realm.RealmList;

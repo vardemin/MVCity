@@ -29,6 +29,8 @@ public class SplashPresenter implements SplashContract.Presenter {
     @Inject
     IRemoteDataRepository remoteDataRepository;
 
+    private boolean verified = false;
+
     public SplashPresenter() {
         App.getApplicationComponent().inject(this);
     }
@@ -41,11 +43,16 @@ public class SplashPresenter implements SplashContract.Presenter {
     @Override
     public void attachView(MVPContract.View view) {
         this.view = (SplashContract.View) view;
-        if (localDataRepository.verifyToken()){
-            if(NetworkUtil.isNetworkConnected(App.getApplicationComponent().context())) {
-                remoteDataRepository.connect();
+        try {
+            if ((verified = localDataRepository.verifyToken())){
+                if(NetworkUtil.isNetworkConnected(App.getApplicationComponent().context())) {
+                    remoteDataRepository.connect();
+                }
+                this.view.navigateMainScreen();
             }
-            this.view.navigateMainScreen();
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.view.showError(e.getLocalizedMessage());
         }
     }
 
@@ -60,7 +67,7 @@ public class SplashPresenter implements SplashContract.Presenter {
     }
 
     private Emitter.Listener onConnected = args -> {
-        if (localDataRepository.verifyToken())
+        if (verified)
             authenticate(localDataRepository.getToken());
         else {
             view.navigateLoginScreen();

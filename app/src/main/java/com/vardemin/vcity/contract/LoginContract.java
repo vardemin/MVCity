@@ -3,11 +3,11 @@ package com.vardemin.vcity.contract;
 public interface LoginContract {
 
     interface View extends MVPContract.View {
-        void login();
         void showLoginError(String err);
+        void navigateMainScreen();
     }
 
     interface Presenter extends MVPContract.Presenter {
-        void requestLogin(String code);
+        void login(String name, String password);
     }
 }

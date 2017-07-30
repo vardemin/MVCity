@@ -6,6 +6,6 @@ package com.vardemin.vcity.data.local;
 
 public interface ILocalDataRepository {
     String getToken();
-    boolean verifyToken();
+    boolean verifyToken() throws Exception;
     void cacheToken(String token);
 }

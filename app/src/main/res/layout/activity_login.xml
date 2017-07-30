@@ -35,13 +35,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColorHint="@color/colorBack"
-                android:textColor="@color/colorWhite"
+
                 android:textColorHighlight="@color/colorAccent">
 
                 <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorWhite"
                     android:hint="@string/prompt_email"/>
 
             </android.support.design.widget.TextInputLayout>

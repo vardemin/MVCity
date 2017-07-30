@@ -58,18 +58,24 @@ public class LoginPresenter implements LoginContract.Presenter {
     public void login(String email, String password) {
         JSONObject object = new JSONObject();
         try {
+            object.put("strategy","local");
             object.put("email",email);
             object.put("password", password);
+            Log.d("SOCKET SENT: ", object.toString());
+            remoteDataRepository.emit("authenticate",object,onLogin);
         } catch (JSONException e) {
             e.printStackTrace();
             view.showError(e.getLocalizedMessage());
         }
-        remoteDataRepository.emit("authenticate",object,onLogin);
+
     }
 
     private Ack onLogin = args -> {
-        Log.d("SOCKET IO args 0", args[0].toString());
-        Log.d("SOCKET IO args 1", args[1].toString());
+        for (int i=0; i<args.length; i++) {
+            if(args[i]!=null)
+            Log.d("SOCKET IO args", args[i].toString());
+        }
+
         //TODO: save to BD
         /*isAuthenticated = true;
         if (isViewAlive())

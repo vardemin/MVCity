@@ -76,7 +76,7 @@ public class SplashPresenter implements SplashContract.Presenter {
         dataMap.put("strategy","jwt");
         dataMap.put("accessToken", token);
         JSONObject data = new JSONObject(dataMap);
-        remoteDataRepository.emit("authenticate",data, onAuthenticated);
+        remoteDataRepository.emit("authenticate",new Object[]{data}, onAuthenticated);
     }
 
     private Ack onAuthenticated = args -> {

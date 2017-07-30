@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     TextInputLayout password_layout;
     @BindView(R.id.password)
     EditText password_input;
-    @BindView(R.id.login)
+    @BindView(R.id.email)
     EditText login_input;
     @BindView(R.id.login_progress)
     ProgressBar progressBar;

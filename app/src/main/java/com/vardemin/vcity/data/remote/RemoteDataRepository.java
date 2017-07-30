@@ -45,7 +45,7 @@ public class RemoteDataRepository implements IRemoteDataRepository {
 
     @Override
     public void emit(String eventName, Object data, Ack ack) {
-        socket.emit(eventName,(Object[])data, ack);
+        socket.emit(eventName, data, ack);
     }
 
 

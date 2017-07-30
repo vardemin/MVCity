@@ -72,7 +72,18 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        App.getLoginComponent().inject(this);
+        ((App)getApplication()).getLoginComponent().inject(this);
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        presenter.attachView(this);
+    }
+
+    @Override
+    protected void onStop(){
+        presenter.detachView();
+        super.onStop();
     }
 
 

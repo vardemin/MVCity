@@ -1,5 +1,7 @@
 package com.vardemin.vcity.di.module;
 
+import com.vardemin.vcity.data.local.ILocalDataRepository;
+import com.vardemin.vcity.data.remote.IRemoteDataRepository;
 import com.vardemin.vcity.di.scope.ScreenScope;
 import com.vardemin.vcity.presenter.SplashPresenter;
 
@@ -13,7 +15,7 @@ import dagger.Provides;
 public class SplashModule {
     @Provides
     @ScreenScope
-    public SplashPresenter provideSplashPresenter() {
-        return new SplashPresenter();
+    public SplashPresenter provideSplashPresenter(ILocalDataRepository localDataRepository, IRemoteDataRepository remoteDataRepository) {
+        return new SplashPresenter(localDataRepository, remoteDataRepository);
     }
 }

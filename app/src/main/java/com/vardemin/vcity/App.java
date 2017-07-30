@@ -21,23 +21,23 @@ import io.realm.RealmConfiguration;
 public class App extends Application {
     private Realm realm;
 
-    private static ApplicationComponent applicationComponent;
-    private static SplashComponent splashComponent;
-    private static LoginComponent loginComponent;
+    private ApplicationComponent applicationComponent;
+    private SplashComponent splashComponent;
+    private LoginComponent loginComponent;
 
     /**
      * DI Application Component provider
      * @return app component
      */
-    public static ApplicationComponent getApplicationComponent() {
+    public ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
 
-    public static SplashComponent getSplashComponent() {
+    public SplashComponent getSplashComponent() {
         return splashComponent;
     }
 
-    public static LoginComponent getLoginComponent() {
+    public  LoginComponent getLoginComponent() {
         return loginComponent;
     }
 

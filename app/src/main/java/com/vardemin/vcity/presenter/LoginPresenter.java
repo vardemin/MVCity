@@ -22,15 +22,14 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     private LoginContract.View view;
 
-    @Inject
-    ILocalDataRepository localDataRepository;
-    @Inject
-    IRemoteDataRepository remoteDataRepository;
+    private ILocalDataRepository localDataRepository;
+    private IRemoteDataRepository remoteDataRepository;
 
     boolean isAuthenticated = false;
 
-    public LoginPresenter() {
-        App.getApplicationComponent().inject(this);
+    public LoginPresenter(ILocalDataRepository localDataRepository, IRemoteDataRepository remoteDataRepository) {
+        this.localDataRepository = localDataRepository;
+        this.remoteDataRepository = remoteDataRepository;
     }
 
     @Override

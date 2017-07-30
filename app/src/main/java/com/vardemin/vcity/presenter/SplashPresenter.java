@@ -1,5 +1,7 @@
 package com.vardemin.vcity.presenter;
 
+import android.content.Context;
+
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.Ack;
 import com.github.nkzawa.socketio.client.Socket;
@@ -24,15 +26,22 @@ import javax.inject.Inject;
 public class SplashPresenter implements SplashContract.Presenter {
 
     private SplashContract.View view;
-    @Inject
     ILocalDataRepository localDataRepository;
-    @Inject
     IRemoteDataRepository remoteDataRepository;
 
     private boolean verified = false;
 
-    public SplashPresenter() {
-        App.getApplicationComponent().inject(this);
+    public SplashPresenter(ILocalDataRepository localDataRepository, IRemoteDataRepository remoteDataRepository) {
+        this.localDataRepository = localDataRepository;
+        this.remoteDataRepository = remoteDataRepository;
+        try {
+            this.verified = localDataRepository.verifyToken();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.remoteDataRepository.connect();
+        this.remoteDataRepository.listenOn(Socket.EVENT_CONNECT,onConnected);
+
     }
 
     @Override
@@ -43,17 +52,8 @@ public class SplashPresenter implements SplashContract.Presenter {
     @Override
     public void attachView(MVPContract.View view) {
         this.view = (SplashContract.View) view;
-        try {
-            if ((verified = localDataRepository.verifyToken())){
-                if(NetworkUtil.isNetworkConnected(App.getApplicationComponent().context())) {
-                    remoteDataRepository.connect();
-                }
-                this.view.navigateMainScreen();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            this.view.showError(e.getLocalizedMessage());
-        }
+        if (!verified)
+            this.view.navigateLoginScreen();
     }
 
     @Override
@@ -69,9 +69,6 @@ public class SplashPresenter implements SplashContract.Presenter {
     private Emitter.Listener onConnected = args -> {
         if (verified)
             authenticate(localDataRepository.getToken());
-        else {
-            view.navigateLoginScreen();
-        }
     };
 
     private void authenticate(String token) {

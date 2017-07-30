@@ -5,5 +5,5 @@ package com.vardemin.vcity.util;
  */
 
 public class Constants {
-    public static final String SERVER_URL = "http://localhost:3030";
+    public static final String SERVER_URL = "http://192.168.1.80:3030";
 }

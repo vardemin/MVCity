@@ -72,8 +72,23 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     private Ack onLogin = args -> {
         for (int i=0; i<args.length; i++) {
-            if(args[i]!=null)
-            Log.d("SOCKET IO args", args[i].toString());
+            if(args[i]!=null) {
+                if (i == 0) {
+                    try {
+                        view.showLoginError(((JSONObject) args[i]).getString("message"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else if (i == 1)
+                    try {
+                        localDataRepository.cacheToken(((JSONObject) args[i]).getString("accessToken"));
+                        isAuthenticated = true;
+                        view.navigateMainScreen();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                Log.d("SOCKET IO args", args[i].toString());
+            }
         }
 
         //TODO: save to BD

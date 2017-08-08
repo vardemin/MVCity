@@ -89,7 +89,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void showLoginError(String err) {
-        password_layout.setError(err);
+        runOnUiThread(() -> {
+            password_layout.setError(err);
+        });
     }
 
     @Override

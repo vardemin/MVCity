@@ -1,7 +1,7 @@
 package com.vardemin.vcity.di.module;
 
 import com.vardemin.vcity.di.scope.SubScreenScope;
-import com.vardemin.vcity.presenter.InstitutionPresenter;
+import com.vardemin.vcity.mvp.presenters.InstitutionPresenter;
 
 import dagger.Module;
 import dagger.Provides;

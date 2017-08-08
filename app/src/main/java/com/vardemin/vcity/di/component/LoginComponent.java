@@ -3,6 +3,7 @@ package com.vardemin.vcity.di.component;
 import com.vardemin.vcity.di.module.LoginModule;
 import com.vardemin.vcity.di.scope.ScreenScope;
 import com.vardemin.vcity.ui.activity.LoginActivity;
+import com.vardemin.vcity.ui.fragment.RegistrationFragment;
 
 import dagger.Component;
 
@@ -13,4 +14,5 @@ import dagger.Component;
 @ScreenScope
 public interface LoginComponent {
     void inject(LoginActivity loginActivity);
+    void inject(RegistrationFragment registrationFragment);
 }

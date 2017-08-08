@@ -1,9 +1,9 @@
 package com.vardemin.vcity.di.module;
 
-import com.vardemin.vcity.data.local.ILocalDataRepository;
-import com.vardemin.vcity.data.remote.IRemoteDataRepository;
+import com.vardemin.vcity.mvp.repositories.local.ILocalDataRepository;
+import com.vardemin.vcity.mvp.repositories.remote.IRemoteDataRepository;
 import com.vardemin.vcity.di.scope.ScreenScope;
-import com.vardemin.vcity.presenter.SplashPresenter;
+import com.vardemin.vcity.mvp.presenters.SplashPresenter;
 
 import dagger.Module;
 import dagger.Provides;

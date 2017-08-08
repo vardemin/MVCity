@@ -1,9 +1,10 @@
 package com.vardemin.vcity.di.module;
 
-import com.vardemin.vcity.data.local.ILocalDataRepository;
-import com.vardemin.vcity.data.remote.IRemoteDataRepository;
+import com.vardemin.vcity.mvp.repositories.local.ILocalDataRepository;
+import com.vardemin.vcity.mvp.repositories.remote.IRemoteDataRepository;
 import com.vardemin.vcity.di.scope.ScreenScope;
-import com.vardemin.vcity.presenter.LoginPresenter;
+import com.vardemin.vcity.mvp.presenters.LoginPresenter;
+import com.vardemin.vcity.mvp.presenters.RegistrationPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -18,6 +19,11 @@ public class LoginModule {
     @ScreenScope
     public LoginPresenter provideLoginPresenter(ILocalDataRepository localDataRepository, IRemoteDataRepository remoteDataRepository) {
         return new LoginPresenter(localDataRepository, remoteDataRepository);
+    }
+    @Provides
+    @ScreenScope
+    public RegistrationPresenter provideRegistrationPresenter(ILocalDataRepository localDataRepository, IRemoteDataRepository remoteDataRepository) {
+        return new RegistrationPresenter(localDataRepository, remoteDataRepository);
     }
 
 }

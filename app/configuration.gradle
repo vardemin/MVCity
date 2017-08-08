@@ -18,4 +18,5 @@ ext {
     okhttpVersion = '3.3.0'
 
     butterKnifeVersion = '8.5.1'
+    moxyVersion = '1.5.3'
 }

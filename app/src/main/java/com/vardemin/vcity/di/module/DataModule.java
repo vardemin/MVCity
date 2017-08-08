@@ -3,10 +3,10 @@ package com.vardemin.vcity.di.module;
 import android.content.Context;
 
 import com.github.nkzawa.socketio.client.Socket;
-import com.vardemin.vcity.data.local.ILocalDataRepository;
-import com.vardemin.vcity.data.local.LocalDataRepository;
-import com.vardemin.vcity.data.remote.IRemoteDataRepository;
-import com.vardemin.vcity.data.remote.RemoteDataRepository;
+import com.vardemin.vcity.mvp.repositories.local.ILocalDataRepository;
+import com.vardemin.vcity.mvp.repositories.local.LocalDataRepository;
+import com.vardemin.vcity.mvp.repositories.remote.IRemoteDataRepository;
+import com.vardemin.vcity.mvp.repositories.remote.RemoteDataRepository;
 
 import javax.inject.Singleton;
 

@@ -1,6 +1,8 @@
 package com.vardemin.vcity;
 
 import android.app.Application;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 
 import com.vardemin.vcity.di.component.ApplicationComponent;
 import com.vardemin.vcity.di.component.DaggerApplicationComponent;
@@ -21,29 +23,32 @@ import io.realm.RealmConfiguration;
 public class App extends Application {
     private Realm realm;
 
-    private ApplicationComponent applicationComponent;
-    private SplashComponent splashComponent;
-    private LoginComponent loginComponent;
+    private static ApplicationComponent applicationComponent;
+    private static SplashComponent splashComponent;
+    private static LoginComponent loginComponent;
 
     /**
      * DI Application Component provider
      * @return app component
      */
-    public ApplicationComponent getApplicationComponent() {
+    public static ApplicationComponent getApplicationComponent() {
         return applicationComponent;
     }
 
-    public SplashComponent getSplashComponent() {
+    public static SplashComponent getSplashComponent() {
         return splashComponent;
     }
 
-    public  LoginComponent getLoginComponent() {
+    public static LoginComponent getLoginComponent() {
         return loginComponent;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(new NetworkStateReceiver(), intentFilter);
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()

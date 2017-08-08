@@ -2,23 +2,24 @@ package com.vardemin.vcity.di.component;
 
 import android.content.Context;
 
-import com.vardemin.vcity.data.local.ILocalDataRepository;
-import com.vardemin.vcity.data.remote.IRemoteDataRepository;
+import com.vardemin.vcity.mvp.presenters.RegistrationPresenter;
+import com.vardemin.vcity.mvp.repositories.local.ILocalDataRepository;
+import com.vardemin.vcity.mvp.repositories.remote.IRemoteDataRepository;
 import com.vardemin.vcity.di.module.ApplicationModule;
 import com.vardemin.vcity.di.module.DataModule;
-import com.vardemin.vcity.presenter.EventPresenter;
-import com.vardemin.vcity.presenter.InstitutionPresenter;
-import com.vardemin.vcity.presenter.LifePresenter;
-import com.vardemin.vcity.presenter.LoginPresenter;
-import com.vardemin.vcity.presenter.MainPresenter;
-import com.vardemin.vcity.presenter.MeetPresenter;
-import com.vardemin.vcity.presenter.MeetingPresenter;
-import com.vardemin.vcity.presenter.MeetingsPresenter;
-import com.vardemin.vcity.presenter.MeetsPresenter;
-import com.vardemin.vcity.presenter.ProfilePresenter;
-import com.vardemin.vcity.presenter.SettingsPresenter;
-import com.vardemin.vcity.presenter.SplashPresenter;
-import com.vardemin.vcity.presenter.UserPresenter;
+import com.vardemin.vcity.mvp.presenters.EventPresenter;
+import com.vardemin.vcity.mvp.presenters.InstitutionPresenter;
+import com.vardemin.vcity.mvp.presenters.LifePresenter;
+import com.vardemin.vcity.mvp.presenters.LoginPresenter;
+import com.vardemin.vcity.mvp.presenters.MainPresenter;
+import com.vardemin.vcity.mvp.presenters.MeetPresenter;
+import com.vardemin.vcity.mvp.presenters.MeetingPresenter;
+import com.vardemin.vcity.mvp.presenters.MeetingsPresenter;
+import com.vardemin.vcity.mvp.presenters.MeetsPresenter;
+import com.vardemin.vcity.mvp.presenters.ProfilePresenter;
+import com.vardemin.vcity.mvp.presenters.SettingsPresenter;
+import com.vardemin.vcity.mvp.presenters.SplashPresenter;
+import com.vardemin.vcity.mvp.presenters.UserPresenter;
 
 import javax.inject.Singleton;
 
@@ -37,6 +38,7 @@ public interface ApplicationComponent {
     void inject(EventPresenter eventPresenter);
     void inject(InstitutionPresenter institutionPresenter);
     void inject(LifePresenter lifePresenter);
+    void inject(RegistrationPresenter registrationPresenter);
     void inject(LoginPresenter loginPresenter);
     void inject(MainPresenter mainPresenter);
     void inject(MeetPresenter meetPresenter);

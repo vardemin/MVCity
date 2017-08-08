@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.vardemin.vcity.App;
 import com.vardemin.vcity.R;
 import com.vardemin.vcity.contract.SplashContract;
-import com.vardemin.vcity.presenter.SplashPresenter;
+import com.vardemin.vcity.mvp.presenters.SplashPresenter;
 
 import javax.inject.Inject;
 

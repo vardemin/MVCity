@@ -13,4 +13,10 @@
     <string name="nav_profile">Профиль</string>
     <string name="prompt_email">Почта</string>
     <string name="empty_field">Заполните все поля</string>
+    <string name="prompt_name">Имя</string>
+    <string name="action_register">Зарегистрироваться</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="action_pick_date">Выбрать дату рождения</string>
+    <string name="gender_female">Женский</string>
+    <string name="gender_male">Мужской</string>
 </resources>

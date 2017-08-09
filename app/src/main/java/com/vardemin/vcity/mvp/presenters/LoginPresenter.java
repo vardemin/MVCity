@@ -2,56 +2,40 @@ package com.vardemin.vcity.mvp.presenters;
 
 import android.util.Log;
 
+import com.arellomobile.mvp.InjectViewState;
+import com.arellomobile.mvp.MvpPresenter;
 import com.github.nkzawa.socketio.client.Ack;
+import com.vardemin.vcity.App;
 import com.vardemin.vcity.contract.LoginContract;
 import com.vardemin.vcity.contract.MVPContract;
 import com.vardemin.vcity.mvp.repositories.local.ILocalDataRepository;
 import com.vardemin.vcity.mvp.repositories.remote.IRemoteDataRepository;
+import com.vardemin.vcity.mvp.views.LoginView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.inject.Inject;
+
 /**
  * Created by xavie on 19.07.2017.
  */
+@InjectViewState
+public class LoginPresenter extends MvpPresenter<LoginView> {
 
-public class LoginPresenter implements LoginContract.Presenter {
 
-    private LoginContract.View view;
-
-    private ILocalDataRepository localDataRepository;
-    private IRemoteDataRepository remoteDataRepository;
+    @Inject
+    ILocalDataRepository localDataRepository;
+    @Inject
+    IRemoteDataRepository remoteDataRepository;
 
     boolean isAuthenticated = false;
 
-    public LoginPresenter(ILocalDataRepository localDataRepository, IRemoteDataRepository remoteDataRepository) {
-        this.localDataRepository = localDataRepository;
-        this.remoteDataRepository = remoteDataRepository;
+    public LoginPresenter() {
+        App.getApplicationComponent().inject(this);
     }
 
-    @Override
-    public MVPContract.View getView() {
-        return view;
-    }
 
-    @Override
-    public void attachView(MVPContract.View view) {
-        this.view = (LoginContract.View) view;
-        if(isAuthenticated)
-            this.view.navigateMainScreen();
-    }
-
-    @Override
-    public void detachView() {
-        this.view = null;
-    }
-
-    @Override
-    public boolean isViewAlive() {
-        return view!=null;
-    }
-
-    @Override
     public void login(String email, String password) {
         JSONObject object = new JSONObject();
         try {
@@ -62,7 +46,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             remoteDataRepository.emit("authenticate",object,onLogin);
         } catch (JSONException e) {
             e.printStackTrace();
-            view.showError(e.getLocalizedMessage());
+            getViewState().showError(e.getLocalizedMessage());
         }
 
     }
@@ -72,7 +56,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             if(args[i]!=null) {
                 if (i == 0) {
                     try {
-                        view.showLoginError(((JSONObject) args[i]).getString("message"));
+                        getViewState().showLoginError(((JSONObject) args[i]).getString("message"));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -80,7 +64,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     try {
                         localDataRepository.cacheToken(((JSONObject) args[i]).getString("accessToken"));
                         isAuthenticated = true;
-                        view.navigateMainScreen();
+                        getViewState().navigateMainScreen();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

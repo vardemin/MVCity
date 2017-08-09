@@ -7,10 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.vardemin.vcity.App;
 import com.vardemin.vcity.R;
-import com.vardemin.vcity.contract.RegistrationContract;
 import com.vardemin.vcity.mvp.presenters.RegistrationPresenter;
+import com.vardemin.vcity.mvp.views.RegistrationView;
 
 import javax.inject.Inject;
 
@@ -18,7 +19,7 @@ import javax.inject.Inject;
  * Created by xavie on 08.08.2017.
  */
 
-public class RegistrationFragment extends Fragment implements RegistrationContract.View {
+public class RegistrationFragment extends MvpAppCompatFragment implements RegistrationView{
 
     @Inject
     RegistrationPresenter presenter;
@@ -39,13 +40,11 @@ public class RegistrationFragment extends Fragment implements RegistrationContra
     @Override
     public void onStart() {
         super.onStart();
-        presenter.attachView(this);
     }
 
     @Override
     public  void onStop() {
         super.onStop();
-        presenter.detachView();
     }
 
     @Override
@@ -54,14 +53,10 @@ public class RegistrationFragment extends Fragment implements RegistrationContra
     }
 
     @Override
-    public void navigateLoginScreen() {
+    public void navigateMainScreen() {
 
     }
 
-    @Override
-    public void showLoading(boolean state) {
-
-    }
 
     @Override
     public void showError(String err) {

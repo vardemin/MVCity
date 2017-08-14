@@ -8,11 +8,13 @@ import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.PresenterType;
 import com.vardemin.vcity.App;
 import com.vardemin.vcity.R;
 import com.vardemin.vcity.mvp.presenters.LoginPresenter;
@@ -30,19 +32,23 @@ import butterknife.OnClick;
 
 public class LoginFragment extends MvpAppCompatFragment implements LoginView {
 
-    @InjectPresenter
+    @InjectPresenter(type = PresenterType.WEAK, tag = LoginPresenter.TAG)
     LoginPresenter presenter;
 
     @BindView(R.id.password_layout)
     TextInputLayout password_layout;
     @BindView(R.id.login_layout)
     TextInputLayout login_layout;
-    @BindView(R.id.password)
+    @BindView(R.id.login_password)
     EditText password_input;
-    @BindView(R.id.email)
+    @BindView(R.id.login_email)
     EditText login_input;
     @BindView(R.id.login_progress)
     ProgressBar progressBar;
+
+    public static LoginFragment getInstance() {
+        return new LoginFragment();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,8 +62,21 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         ButterKnife.bind(this, view);
+        login_input.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if (i == EditorInfo.IME_ACTION_DONE) {
+                presenter.onEmail(textView.getText().toString());
+                return true;
+            }
+            return false;
+        });
+        password_input.setOnEditorActionListener((textView, i, keyEvent) -> {
+            if (i == EditorInfo.IME_ACTION_DONE) {
+                presenter.onPassword(textView.getText().toString());
+                return true;
+            }
+            return false;
+        });
     }
 
     @Override
@@ -71,8 +90,17 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
     }
 
     @Override
-    public void navigateMainScreen() {
-        startActivity(new Intent(getActivity(),MainActivity.class));
+    public void setEmailField(String email) {
+        getActivity().runOnUiThread(() -> {
+            this.login_input.setText(email);
+        });
+    }
+
+    @Override
+    public void setPasswordField(String password) {
+        getActivity().runOnUiThread(() -> {
+            this.password_input.setText(password);
+        });
     }
 
     @Override
@@ -90,5 +118,10 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
         else {
             password_layout.setError(getString(R.string.empty_field));
         }
+    }
+
+    @OnClick(R.id.login_to_register_btn)
+    void onRegister() {
+        presenter.onRegistration();
     }
 }

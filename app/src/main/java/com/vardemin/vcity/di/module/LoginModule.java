@@ -18,12 +18,12 @@ public class LoginModule {
     @Provides
     @ScreenScope
     public LoginPresenter provideLoginPresenter(ILocalDataRepository localDataRepository, IRemoteDataRepository remoteDataRepository) {
-        return new LoginPresenter(localDataRepository, remoteDataRepository);
+        return new LoginPresenter();
     }
     @Provides
     @ScreenScope
     public RegistrationPresenter provideRegistrationPresenter(ILocalDataRepository localDataRepository, IRemoteDataRepository remoteDataRepository) {
-        return new RegistrationPresenter(localDataRepository, remoteDataRepository);
+        return new RegistrationPresenter();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.vardemin.vcity.mvp.models;
+package com.vardemin.vcity.data.models;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.vardemin.vcity.mvp.models.other;
+package com.vardemin.vcity.data.models.other;
 
 import io.realm.RealmObject;
 

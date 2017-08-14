@@ -1,5 +1,7 @@
 package com.vardemin.vcity.mvp.presenters;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.github.nkzawa.emitter.Emitter;
@@ -10,6 +12,7 @@ import com.vardemin.vcity.contract.MVPContract;
 import com.vardemin.vcity.contract.SplashContract;
 import com.vardemin.vcity.mvp.repositories.local.ILocalDataRepository;
 import com.vardemin.vcity.mvp.repositories.remote.IRemoteDataRepository;
+import com.vardemin.vcity.mvp.repositories.remote.SocketResultListener;
 import com.vardemin.vcity.mvp.views.SplashView;
 
 import org.json.JSONException;
@@ -66,7 +69,21 @@ public class SplashPresenter extends MvpPresenter<SplashView> {
         dataMap.put("strategy","jwt");
         dataMap.put("accessToken", token);
         JSONObject data = new JSONObject(dataMap);
-        remoteDataRepository.emit("authenticate",new Object[]{data}, onAuthenticated);
+        remoteDataRepository.emit(new SocketResultListener() {
+            @Override
+            public void onError(String message) {
+                Log.d("Auth", message);
+            }
+
+            @Override
+            public void onResult(JSONObject object) {
+                try {
+                    localDataRepository.cacheToken(object.getString("accessToken"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        },"authenticate", data);
     }
 
     private Ack onAuthenticated = args -> {

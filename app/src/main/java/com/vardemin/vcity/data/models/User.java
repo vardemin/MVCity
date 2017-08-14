@@ -1,6 +1,6 @@
-package com.vardemin.vcity.mvp.models;
+package com.vardemin.vcity.data.models;
 
-import com.vardemin.vcity.mvp.models.other.LocationNumber;
+import com.vardemin.vcity.data.models.other.LocationNumber;
 
 import java.util.Date;
 

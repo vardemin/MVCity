@@ -14,4 +14,5 @@ public interface IRemoteDataRepository {
     void listenOn(String eventName, Emitter.Listener listener);
     void offListenOn(String eventName, Emitter.Listener listener);
     void emit(String eventName, Object data, Ack ack);
+    void emit(SocketResultListener listener, String eventName, Object... data);
 }

@@ -40,9 +40,11 @@
                 android:textColorHighlight="@color/colorAccent">
 
                 <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/email"
+                    android:id="@+id/login_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
                     android:textColor="@color/colorWhite"
                     android:hint="@string/prompt_email"/>
 
@@ -57,13 +59,13 @@
                 android:textColorHighlight="@color/colorAccent">
 
                 <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/password"
+                    android:id="@+id/login_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword"
                     android:maxLines="1"/>
 
@@ -78,6 +80,16 @@
                 android:textColor="@color/colorDarkGrey"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/login_to_register_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorBack"
+                android:textColor="@color/colorDarkGrey"
+                android:text="@string/action_register_short"
+                android:textStyle="bold"/>
 
         </LinearLayout>
     </ScrollView>

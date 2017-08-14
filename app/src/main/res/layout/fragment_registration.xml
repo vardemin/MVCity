@@ -36,11 +36,13 @@
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/email"
+                    android:id="@+id/register_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textWebEmailAddress"
                     android:textColor="@color/colorWhite"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
                     android:hint="@string/prompt_email"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -49,11 +51,12 @@
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/password"
+                    android:id="@+id/register_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
                     android:inputType="textPassword"
+                    android:imeOptions="actionDone"
                     android:textColor="@color/colorWhite"
                     android:maxLines="1"/>
             </android.support.design.widget.TextInputLayout>
@@ -63,11 +66,13 @@
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/name"
+                    android:id="@+id/register_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:textColor="@color/colorWhite"
+                    android:maxLines="1"
+                    android:imeOptions="actionDone"
                     android:hint="@string/prompt_name"/>
             </android.support.design.widget.TextInputLayout>
             <LinearLayout
@@ -76,6 +81,7 @@
                 android:orientation="horizontal"
                 android:gravity="center">
                 <TextView
+                    android:id="@+id/register_birth"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="25sp"
@@ -84,6 +90,7 @@
                     android:text="01.01.1999"
                     android:textAlignment="center"/>
                 <Button
+                    android:id="@+id/register_pick_date_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
@@ -97,6 +104,7 @@
                 android:padding="16dp"
                 android:orientation="horizontal">
                 <RadioButton
+                    android:id="@+id/register_radio_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/gender_male"
@@ -106,6 +114,7 @@
                     android:gravity="center"
                     android:checked="true"/>
                 <RadioButton
+                    android:id="@+id/register_radio_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/gender_female"

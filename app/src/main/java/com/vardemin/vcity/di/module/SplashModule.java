@@ -16,6 +16,6 @@ public class SplashModule {
     @Provides
     @ScreenScope
     public SplashPresenter provideSplashPresenter(ILocalDataRepository localDataRepository, IRemoteDataRepository remoteDataRepository) {
-        return new SplashPresenter(localDataRepository, remoteDataRepository);
+        return new SplashPresenter();
     }
 }

@@ -8,10 +8,13 @@ import com.github.nkzawa.socketio.client.Ack;
 import com.vardemin.vcity.App;
 import com.vardemin.vcity.contract.LoginContract;
 import com.vardemin.vcity.contract.MVPContract;
+import com.vardemin.vcity.eventbus.NavigationEvent;
+import com.vardemin.vcity.eventbus.Routes;
 import com.vardemin.vcity.mvp.repositories.local.ILocalDataRepository;
 import com.vardemin.vcity.mvp.repositories.remote.IRemoteDataRepository;
 import com.vardemin.vcity.mvp.views.LoginView;
 
+import org.greenrobot.eventbus.EventBus;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,7 +25,7 @@ import javax.inject.Inject;
  */
 @InjectViewState
 public class LoginPresenter extends MvpPresenter<LoginView> {
-
+    public static final String TAG = "LOGIN_PRESENTER";
 
     @Inject
     ILocalDataRepository localDataRepository;
@@ -51,6 +54,17 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
 
     }
 
+    public void onRegistration() {
+        EventBus.getDefault().post(new NavigationEvent(Routes.LOGIN_SUBSCREEN, Routes.REGISTRATION_SUBSCREEN));
+    }
+
+    public void onEmail(String email) {
+        getViewState().setEmailField(email);
+    }
+    public void onPassword(String password) {
+        getViewState().setPasswordField(password);
+    }
+
     private Ack onLogin = args -> {
         for (int i=0; i<args.length; i++) {
             if(args[i]!=null) {
@@ -64,7 +78,7 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                     try {
                         localDataRepository.cacheToken(((JSONObject) args[i]).getString("accessToken"));
                         isAuthenticated = true;
-                        getViewState().navigateMainScreen();
+                        EventBus.getDefault().post(new NavigationEvent(Routes.LOGIN_SUBSCREEN,Routes.MAIN_SCREEN));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

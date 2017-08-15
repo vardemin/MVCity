@@ -20,4 +20,6 @@
     <string name="gender_female">Женский</string>
     <string name="gender_male">Мужской</string>
     <string name="action_register_short">Зарегистрироваться</string>
+    <string name="error_age">Доступ только для совершеннолетних пользователей</string>
+    <string name="weak_password">Слабый пароль</string>
 </resources>

@@ -24,4 +24,6 @@
     <string name="gender_male">Male</string>
     <string name="gender_female">Female</string>
     <string name="action_register_short">Register</string>
+    <string name="error_age">Only adults is allowed</string>
+    <string name="weak_password">Too weak password</string>
 </resources>

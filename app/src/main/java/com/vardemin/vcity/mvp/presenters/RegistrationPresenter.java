@@ -54,7 +54,7 @@ public class RegistrationPresenter extends MvpPresenter<RegistrationView> {
         }
     }
 
-    public void onEmail(String email) {
+    /*public void onEmail(String email) {
         getViewState().setEmailField(email);
     }
     public void onPassword(String password) {
@@ -68,6 +68,6 @@ public class RegistrationPresenter extends MvpPresenter<RegistrationView> {
     }
     public void onSex(boolean male){
         getViewState().setSexField(male);
-    }
+    }*/
 
 }

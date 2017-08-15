@@ -60,10 +60,26 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
     }
 
     @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null) {
+            login_input.setText(savedInstanceState.getString("email"));
+            password_input.setText(savedInstanceState.getString("password"));
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("email",login_input.getText().toString());
+        outState.putString("password",password_input.getText().toString());
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        login_input.setOnEditorActionListener((textView, i, keyEvent) -> {
+/*        login_input.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
                 presenter.onEmail(textView.getText().toString());
                 return true;
@@ -76,7 +92,7 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
                 return true;
             }
             return false;
-        });
+        });*/
     }
 
     @Override
@@ -89,7 +105,7 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
         });
     }
 
-    @Override
+ /*   @Override
     public void setEmailField(String email) {
         getActivity().runOnUiThread(() -> {
             this.login_input.setText(email);
@@ -101,7 +117,7 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
         getActivity().runOnUiThread(() -> {
             this.password_input.setText(password);
         });
-    }
+    }*/
 
     @Override
     public void showError(String error) {

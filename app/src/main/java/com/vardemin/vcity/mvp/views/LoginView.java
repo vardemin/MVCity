@@ -9,6 +9,6 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 @StateStrategyType(AddToEndSingleStrategy.class)
 public interface LoginView extends BaseView {
     void showLoginError(String error);
-    void setEmailField(String email);
-    void setPasswordField(String password);
+    /*void setEmailField(String email);
+    void setPasswordField(String password);*/
 }

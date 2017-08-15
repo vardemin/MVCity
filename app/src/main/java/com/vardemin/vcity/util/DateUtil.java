@@ -3,6 +3,7 @@ package com.vardemin.vcity.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -18,5 +19,11 @@ public class DateUtil {
     public static Date getDateFromStr(String date) throws ParseException {
         DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return format.parse(date);
+    }
+    public static boolean isAdult(Date date) {
+        Calendar now = Calendar.getInstance();
+        Calendar birthCal = Calendar.getInstance();
+        birthCal.setTime(date);
+        return now.get(Calendar.YEAR)-birthCal.get(Calendar.YEAR)>=18;
     }
 }

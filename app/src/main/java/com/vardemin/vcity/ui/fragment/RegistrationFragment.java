@@ -27,6 +27,8 @@ import com.vardemin.vcity.util.DateUtil;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -63,11 +65,34 @@ public class RegistrationFragment extends MvpAppCompatFragment implements Regist
         //App.getLoginComponent().inject(this);
         return rootView;
     }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null) {
+            email.setText(savedInstanceState.getString("email"));
+            password.setText(savedInstanceState.getString("password"));
+            name.setText(savedInstanceState.getString("name"));
+            birth.setText(savedInstanceState.getString("birth"));
+            radioMale.setChecked(savedInstanceState.getBoolean("sex"));
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("email",email.getText().toString());
+        outState.putString("password",password.getText().toString());
+        outState.putString("name",name.getText().toString());
+        outState.putString("birth",birth.getText().toString());
+        outState.putBoolean("sex", radioMale.isChecked());
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        email.setOnEditorActionListener((textView, i, keyEvent) -> {
+        /*email.setOnEditorActionListener((textView, i, keyEvent) -> {
             if (i == EditorInfo.IME_ACTION_DONE) {
                 presenter.onEmail(textView.getText().toString());
                 return true;
@@ -88,7 +113,7 @@ public class RegistrationFragment extends MvpAppCompatFragment implements Regist
             }
             return false;
         });
-        radioMale.setOnClickListener(view1 -> presenter.onSex(radioMale.isChecked()));
+        radioMale.setOnClickListener(view1 -> presenter.onSex(radioMale.isChecked()));*/
 
     }
 
@@ -104,7 +129,7 @@ public class RegistrationFragment extends MvpAppCompatFragment implements Regist
         });
     }
 
-    @Override
+   /* @Override
     public void setEmailField(String email) {
         getActivity().runOnUiThread(() -> {
             this.email.setText(email);
@@ -137,7 +162,7 @@ public class RegistrationFragment extends MvpAppCompatFragment implements Regist
         getActivity().runOnUiThread(() -> {
             this.radioMale.setChecked(male);
         });
-    }
+    }*/
 
 
     @Override
@@ -158,20 +183,28 @@ public class RegistrationFragment extends MvpAppCompatFragment implements Regist
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
         StringBuilder sb = new StringBuilder();
         sb.append(day).append('.').append(month).append('.').append(year);
-        //birth.setText(sb);
-        presenter.onBirth(sb.toString());
+        birth.setText(sb);
+       // presenter.onBirth(sb.toString());
     }
 
     @OnClick(R.id.register_btn)
     void onRegisterBtn() {
-        try {
-            RegistrationData data = new RegistrationData(email.getText().toString(),name.getText().toString(),
-                    password.getText().toString(), DateUtil.getDateFromStr(birth.getText().toString()), radioMale.isChecked());
-            presenter.register(data);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            showError(e.getLocalizedMessage());
-        }
-
+        if(email.length()>0 && name.length()>0 && password.length()>0)
+            if (password.length()>6)
+                try {
+                    Date birtDate = DateUtil.getDateFromStr(birth.getText().toString());
+                    if(DateUtil.isAdult(birtDate)) {
+                        RegistrationData data = new RegistrationData(email.getText().toString(), name.getText().toString(),
+                                password.getText().toString(), birtDate, radioMale.isChecked());
+                        presenter.register(data);
+                    }
+                    else
+                        showError(getString(R.string.error_age));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    showError(e.getLocalizedMessage());
+                }
+            else showError(getString(R.string.weak_password));
+        else showError(getString(R.string.empty_field));
     }
 }

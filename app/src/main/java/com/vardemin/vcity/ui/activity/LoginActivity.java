@@ -38,7 +38,7 @@ import butterknife.OnClick;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity{
-
+    private static final String TAG = "LOGIN_ACTIVITY";
 
     FragmentManager fragmentManager;
 
@@ -47,22 +47,16 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         fragmentManager = getSupportFragmentManager();
-
         if (savedInstanceState!=null) {
+            Fragment savedFragment =  fragmentManager.getFragment(savedInstanceState,TAG);
             String tag = savedInstanceState.getString("TAG");
             if (tag!=null)
-                switch (tag) {
-                    case Constants.LOGIN_SUBSCREEN:
-                        replaceFragment(LoginFragment.getInstance(),tag,false);
-                        break;
-                    case Constants.REGISTRATION_SUBSCREEN:
-                        replaceFragment(RegistrationFragment.getInstance(),tag,false);
-                        break;
-                }
+                replaceFragment(savedFragment,tag,false);
         }
         else
             replaceFragment(LoginFragment.getInstance(),Constants.LOGIN_SUBSCREEN, false);
     }
+
 
     @Override
     public void onStart() {
@@ -77,9 +71,9 @@ public class LoginActivity extends AppCompatActivity{
     }
     @Override public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (fragmentManager.getBackStackEntryCount()>0)
-            outState.putString("TAG", fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount()-1).getName());
-        else outState.putString("TAG", Constants.LOGIN_SUBSCREEN);
+        Fragment fragment = fragmentManager.findFragmentByTag(Constants.REGISTRATION_SUBSCREEN);
+        fragmentManager.putFragment(outState,TAG, fragment!=null?fragment:fragmentManager.findFragmentByTag(Constants.LOGIN_SUBSCREEN));
+        outState.putString("TAG",fragment!=null?Constants.REGISTRATION_SUBSCREEN:Constants.LOGIN_SUBSCREEN);
     }
 
     @Subscribe

@@ -58,12 +58,12 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
         EventBus.getDefault().post(new NavigationEvent(Routes.LOGIN_SUBSCREEN, Routes.REGISTRATION_SUBSCREEN));
     }
 
-    public void onEmail(String email) {
+    /*public void onEmail(String email) {
         getViewState().setEmailField(email);
     }
     public void onPassword(String password) {
         getViewState().setPasswordField(password);
-    }
+    }*/
 
     private Ack onLogin = args -> {
         for (int i=0; i<args.length; i++) {

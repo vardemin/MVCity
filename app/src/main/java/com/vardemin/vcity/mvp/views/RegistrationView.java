@@ -10,9 +10,9 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 @StateStrategyType(AddToEndSingleStrategy.class)
 public interface RegistrationView extends BaseView {
     void showRegistrationError(String err);
-    void setEmailField(String email);
+    /*void setEmailField(String email);
     void setPasswordField(String password);
     void setNameField(String name);
     void setBirthField(String birth);
-    void setSexField(Boolean male);
+    void setSexField(Boolean male);*/
 }

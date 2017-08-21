@@ -70,6 +70,8 @@ dependencies {
     compile "com.arello-mobile:moxy-app-compat:${moxyVersion}"
     annotationProcessor "com.arello-mobile:moxy-compiler:${moxyVersion}"
 
+    //Play Services
+    compile "com.google.android.gms:play-services-maps:${playServicesVersion}"
 
     testCompile 'junit:junit:4.12'
 }

@@ -19,4 +19,6 @@ ext {
 
     butterKnifeVersion = '8.5.1'
     moxyVersion = '1.5.3'
+
+    playServicesVersion = '11.2.0'
 }

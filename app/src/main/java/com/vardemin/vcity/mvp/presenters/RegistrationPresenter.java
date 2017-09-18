@@ -2,7 +2,6 @@ package com.vardemin.vcity.mvp.presenters;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.github.nkzawa.socketio.client.Ack;
 import com.vardemin.vcity.App;
 import com.vardemin.vcity.contract.MVPContract;
 import com.vardemin.vcity.contract.RegistrationContract;

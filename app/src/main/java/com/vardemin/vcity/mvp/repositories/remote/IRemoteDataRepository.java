@@ -1,11 +1,9 @@
 package com.vardemin.vcity.mvp.repositories.remote;
 
-import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.socketio.client.Ack;
 
-/**
- * Created by SimUser on 18.07.2017.
- */
+import io.socket.client.Ack;
+import io.socket.emitter.Emitter;
+
 
 public interface IRemoteDataRepository {
     void connect();

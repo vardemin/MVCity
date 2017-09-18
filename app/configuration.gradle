@@ -8,7 +8,7 @@ ext {
     targetSdkVersion = 25
 
     //Libraries
-    buildToolsVersion = '26.0.0'
+    buildToolsVersion = '26.0.1'
     supportLibraryVersion = '25.3.1'
     daggerVersion = '2.11'
 
@@ -20,5 +20,5 @@ ext {
     butterKnifeVersion = '8.5.1'
     moxyVersion = '1.5.3'
 
-    playServicesVersion = '11.2.0'
+    playServicesVersion = '11.2.2'
 }

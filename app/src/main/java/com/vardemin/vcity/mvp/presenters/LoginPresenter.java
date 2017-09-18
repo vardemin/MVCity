@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.github.nkzawa.socketio.client.Ack;
 import com.vardemin.vcity.App;
 import com.vardemin.vcity.contract.LoginContract;
 import com.vardemin.vcity.contract.MVPContract;
@@ -19,6 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.inject.Inject;
+
+import io.socket.client.Ack;
 
 /**
  * Created by xavie on 19.07.2017.

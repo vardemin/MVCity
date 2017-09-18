@@ -1,8 +1,6 @@
 package com.vardemin.vcity.di.module;
 
 import android.content.Context;
-
-import com.github.nkzawa.socketio.client.Socket;
 import com.vardemin.vcity.mvp.repositories.local.ILocalDataRepository;
 import com.vardemin.vcity.mvp.repositories.local.LocalDataRepository;
 import com.vardemin.vcity.mvp.repositories.remote.IRemoteDataRepository;
@@ -13,6 +11,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import io.realm.Realm;
+import io.socket.client.Socket;
 
 /**
  * Created by xavie on 23.07.2017.

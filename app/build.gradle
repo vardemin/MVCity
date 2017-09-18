@@ -39,17 +39,15 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
 
     compile "com.google.dagger:dagger:${daggerVersion}"
-    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+
     compile 'javax.inject:javax.inject:1'
 
     //RxJava
     compile "io.reactivex.rxjava2:rxjava:2.0.7"
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
-
     //ButterKnife
     compile "com.jakewharton:butterknife:${butterKnifeVersion}"
-    annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
 
     //Picasso
     compile 'com.squareup.picasso:picasso:2.5.2'
@@ -57,10 +55,12 @@ dependencies {
     //Realm Adapters
     compile 'io.realm:android-adapters:2.1.0'
 
-    compile 'com.github.nkzawa:socket.io-client:0.3.0'
+    compile ('io.socket:socket.io-client:1.0.0') {
+        // excluding org.json which is provided by Android
+        exclude group: 'org.json', module: 'json'
+    }
 
     compile 'com.google.code.gson:gson:2.8.1'
-
 
     //UI
     compile 'com.roughike:bottom-bar:2.3.1'
@@ -68,10 +68,13 @@ dependencies {
 
     compile "com.arello-mobile:moxy:${moxyVersion}"
     compile "com.arello-mobile:moxy-app-compat:${moxyVersion}"
-    annotationProcessor "com.arello-mobile:moxy-compiler:${moxyVersion}"
 
     //Play Services
     compile "com.google.android.gms:play-services-maps:${playServicesVersion}"
+
+    annotationProcessor "com.google.dagger:dagger-compiler:${daggerVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
+    annotationProcessor "com.arello-mobile:moxy-compiler:${moxyVersion}"
 
     testCompile 'junit:junit:4.12'
 }

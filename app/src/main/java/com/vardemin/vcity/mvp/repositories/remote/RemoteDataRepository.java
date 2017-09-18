@@ -1,15 +1,13 @@
 package com.vardemin.vcity.mvp.repositories.remote;
 
-import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.socketio.client.Ack;
-import com.github.nkzawa.socketio.client.Socket;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * Created by SimUser on 18.07.2017.
- */
+import io.socket.client.Ack;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
+
 
 public class RemoteDataRepository implements IRemoteDataRepository {
     private final Socket socket;

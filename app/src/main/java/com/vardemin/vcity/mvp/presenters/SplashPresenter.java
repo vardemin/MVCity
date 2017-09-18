@@ -4,9 +4,6 @@ import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
-import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.socketio.client.Ack;
-import com.github.nkzawa.socketio.client.Socket;
 import com.vardemin.vcity.App;
 import com.vardemin.vcity.contract.MVPContract;
 import com.vardemin.vcity.contract.SplashContract;
@@ -21,6 +18,10 @@ import org.json.JSONObject;
 import java.util.HashMap;
 
 import javax.inject.Inject;
+
+import io.socket.client.Ack;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 /**
  * Created by SimUser on 24.07.2017.

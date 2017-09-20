@@ -26,4 +26,6 @@
     <string name="action_register_short">Register</string>
     <string name="error_age">Only adults is allowed</string>
     <string name="weak_password">Too weak password</string>
+    <string name="messages">Messages</string>
+    <string name="user">User</string>
 </resources>

@@ -3,4 +3,13 @@
     <tab id="@+id/tab_life"
         icon="@drawable/ic_geo_marker"
         title="@string/nav_life"/>
+    <tab id="@+id/tab_meets"
+        icon="@drawable/ic_clock"
+        title="@string/nav_meetings"/>
+    <tab id="@+id/tab_messages"
+         icon="@drawable/ic_messages"
+        title="@string/messages"/>
+    <tab id="@+id/tab_user"
+         icon="@drawable/ic_user"
+         title="@string/user"/>
 </tabs>

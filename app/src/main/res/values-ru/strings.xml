@@ -22,4 +22,6 @@
     <string name="action_register_short">Зарегистрироваться</string>
     <string name="error_age">Доступ только для совершеннолетних пользователей</string>
     <string name="weak_password">Слабый пароль</string>
+    <string name="messages">Сообщения</string>
+    <string name="user">Пользователь</string>
 </resources>

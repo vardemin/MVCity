@@ -9,4 +9,5 @@
     <color name="colorBlack">#000</color>
     <color name="colorDarkGrey">#303030</color>
     <color name="colorBack">#fafafa</color>
+    <color name="circleFillAccent">#4b2979ff</color>
 </resources>

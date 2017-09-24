@@ -1,6 +1,7 @@
 package com.vardemin.vcity.mvp.presenters;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
@@ -46,10 +47,12 @@ public class SplashPresenter extends MvpPresenter<SplashView> {
         }
         this.remoteDataRepository.connect();
         this.remoteDataRepository.listenOn(Socket.EVENT_CONNECT,onConnected);
+        this.remoteDataRepository.listenOn(Socket.EVENT_CONNECT_TIMEOUT, onConnectionFailed);
+        this.remoteDataRepository.listenOn(Socket.EVENT_CONNECT_ERROR, onConnectionFailed);
 
     }
 
-    @Override
+ /*   @Override
     public void attachView(SplashView view) {
         try {
             view.setAuthorized(localDataRepository.verifyToken());
@@ -57,12 +60,17 @@ public class SplashPresenter extends MvpPresenter<SplashView> {
             e.printStackTrace();
             view.setAuthorized(false);
         }
-    }
+    }*/
 
 
     private Emitter.Listener onConnected = args -> {
         if (verified)
             authenticate(localDataRepository.getToken());
+        else getViewState().setAuthorized(false);
+    };
+
+    private Emitter.Listener onConnectionFailed = args -> {
+        getViewState().showError("Connection failed. Check your Internet connection!");
     };
 
     private void authenticate(String token) {
@@ -74,12 +82,14 @@ public class SplashPresenter extends MvpPresenter<SplashView> {
             @Override
             public void onError(String message) {
                 Log.d("Auth", message);
+                getViewState().setAuthorized(false);
             }
 
             @Override
             public void onResult(JSONObject object) {
                 try {
                     localDataRepository.cacheToken(object.getString("accessToken"));
+                    getViewState().setAuthorized(true);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

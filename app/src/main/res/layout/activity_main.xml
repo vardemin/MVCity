@@ -3,17 +3,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/main_bottom_bar"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:tabIndicatorColor="@color/colorBlack"
+        android:layout_width="match_parent">
+
+        <android.support.design.widget.TabItem
+            android:icon="@drawable/ic_geo_marker"
+            />
+
+        <android.support.design.widget.TabItem
+            android:icon="@drawable/ic_clock"
+            />
+        <android.support.design.widget.TabItem
+            android:icon="@drawable/ic_messages"
+            />
+        <android.support.design.widget.TabItem
+            android:icon="@drawable/ic_user"
+            />
+
+    </android.support.design.widget.TabLayout>
+    <!--<com.roughike.bottombar.BottomBar
+        android:id="@+id/main_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d48"
+        android:layout_alignParentBottom="true"
+        app:bb_tabXmlResource="@xml/bottombar_tabs"
+        app:bb_inActiveTabAlpha="0.6"
+        app:bb_activeTabAlpha="1"
+        app:bb_inActiveTabColor="@color/colorDarkGrey"
+        app:bb_activeTabColor="@color/colorBlack"/>-->
     <FrameLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/main_bottom_bar"/>
-
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/main_bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_tabs"/>
 
 </RelativeLayout>

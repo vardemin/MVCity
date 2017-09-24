@@ -2,6 +2,7 @@ package com.vardemin.vcity.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -14,9 +15,6 @@ import com.vardemin.vcity.mvp.views.SplashView;
 
 import javax.inject.Inject;
 
-/**
- * Created by xavie on 17.07.2017.
- */
 
 public class SplashActivity extends MvpAppCompatActivity implements SplashView{
 
@@ -26,7 +24,7 @@ public class SplashActivity extends MvpAppCompatActivity implements SplashView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_splash);
     }
 
 
@@ -35,5 +33,10 @@ public class SplashActivity extends MvpAppCompatActivity implements SplashView{
         if (isAuthorized)
             startActivity(new Intent(this,MainActivity.class));
         else startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    @Override
+    public void showError(String error) {
+        Snackbar.make(findViewById(android.R.id.content),error, Snackbar.LENGTH_SHORT).show();
     }
 }

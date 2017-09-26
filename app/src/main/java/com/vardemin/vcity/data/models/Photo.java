@@ -9,6 +9,7 @@ import io.realm.annotations.PrimaryKey;
 public class Photo extends RealmObject {
     @PrimaryKey
     private String _id;
+    private String path;
     private User user;
     private Date createdAt;
 }

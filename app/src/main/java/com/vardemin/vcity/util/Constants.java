@@ -7,6 +7,12 @@ package com.vardemin.vcity.util;
 public class Constants {
     public static final String SERVER_URL = "http://192.168.1.80:3030";
 
+    public static final String APP_PREFERENCES = "mvcity_pref";
+    public static final String APP_PREFERENCES_TOKEN = "access_token";
+    public static final String APP_PREFERENCES_LOGIN = "current_login";
+    public static final String APP_PREFERENCES_PASSWORD = "current_password";
+
+
     public static final String LOGIN_SCREEN = "LOGIN_SCREEN";
     public static final String LOGIN_SUBSCREEN = "LOGIN_SUBSCREEN";
     public static final String REGISTRATION_SUBSCREEN = "REGISTRATION_SUBSCREEN";

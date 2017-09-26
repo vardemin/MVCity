@@ -1,21 +1,28 @@
 package com.vardemin.vcity.mvp.repositories.remote;
 
 
+import com.vardemin.vcity.data.models.Photo;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.reactivex.Observable;
 import io.socket.client.Ack;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import okhttp3.MultipartBody;
+import retrofit2.Retrofit;
 
 
 public class RemoteDataRepository implements IRemoteDataRepository {
     private final Socket socket;
+    private final Retrofit retrofit;
 
-    public RemoteDataRepository(Socket socket) {
+    public RemoteDataRepository(Socket socket, Retrofit retrofit) {
         this.socket = socket;
-
+        this.retrofit = retrofit;
     }
+
 
     @Override
     public void connect() {
@@ -63,6 +70,11 @@ public class RemoteDataRepository implements IRemoteDataRepository {
                 }
             }
         });
+    }
+
+    @Override
+    public Observable<Photo> uploadImage(MultipartBody.Part file, String token) {
+        return retrofit.create(RestService.class).uploadImage(file, token);
     }
 
 

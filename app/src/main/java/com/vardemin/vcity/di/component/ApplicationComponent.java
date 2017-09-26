@@ -2,6 +2,7 @@ package com.vardemin.vcity.di.component;
 
 import android.content.Context;
 
+import com.vardemin.vcity.di.module.RestModule;
 import com.vardemin.vcity.mvp.presenters.RegistrationPresenter;
 import com.vardemin.vcity.mvp.repositories.local.ILocalDataRepository;
 import com.vardemin.vcity.mvp.repositories.remote.IRemoteDataRepository;
@@ -24,16 +25,18 @@ import com.vardemin.vcity.mvp.presenters.UserPresenter;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import retrofit2.Retrofit;
 
 /**
  * Created by SimUser on 18.07.2017.
  */
-@Component(modules = {ApplicationModule.class, DataModule.class})
+@Component(modules = {ApplicationModule.class, DataModule.class, RestModule.class})
 @Singleton
 public interface ApplicationComponent {
     Context context();
     ILocalDataRepository localDataRepository();
     IRemoteDataRepository remoteDataRepository();
+    Retrofit retrofit();
 
     void inject(EventPresenter eventPresenter);
     void inject(InstitutionPresenter institutionPresenter);

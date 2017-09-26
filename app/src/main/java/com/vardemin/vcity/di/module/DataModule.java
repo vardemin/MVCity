@@ -12,6 +12,7 @@ import dagger.Module;
 import dagger.Provides;
 import io.realm.Realm;
 import io.socket.client.Socket;
+import retrofit2.Retrofit;
 
 /**
  * Created by xavie on 23.07.2017.
@@ -31,7 +32,7 @@ public class DataModule {
 
     @Provides
     @Singleton
-    public IRemoteDataRepository provideRemoteDataRepository(Socket socket) {
-        return new RemoteDataRepository(socket);
+    public IRemoteDataRepository provideRemoteDataRepository(Socket socket, Retrofit retrofit) {
+        return new RemoteDataRepository(socket, retrofit);
     }
 }

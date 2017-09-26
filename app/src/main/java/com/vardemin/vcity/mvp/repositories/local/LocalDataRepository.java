@@ -7,14 +7,15 @@ import com.vardemin.vcity.util.JWTUtil;
 
 import io.realm.Realm;
 
+import static com.vardemin.vcity.util.Constants.*;
+
 /**
  * Created by SimUser on 18.07.2017.
  */
 
 public class LocalDataRepository implements ILocalDataRepository {
 
-    private static final String APP_PREFERENCES = "mvcity_pref";
-    private static final String APP_PREFERENCES_TOKEN = "access_token";
+
 
     private Realm realm;
     private Context context;
@@ -42,6 +43,30 @@ public class LocalDataRepository implements ILocalDataRepository {
     public void cacheToken(String token) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(APP_PREFERENCES_TOKEN, token);
+        editor.apply();
+    }
+
+    @Override
+    public String getLogin() {
+        return preferences.getString(APP_PREFERENCES_LOGIN, "");
+    }
+
+    @Override
+    public void cacheLogin(String login) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(APP_PREFERENCES_LOGIN, login);
+        editor.apply();
+    }
+
+    @Override
+    public String getPassword() {
+        return preferences.getString(APP_PREFERENCES_PASSWORD, "");
+    }
+
+    @Override
+    public void cachePassword(String password) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(APP_PREFERENCES_PASSWORD, password);
         editor.apply();
     }
 }

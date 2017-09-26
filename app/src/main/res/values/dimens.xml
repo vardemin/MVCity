@@ -19,6 +19,8 @@
     <dimen name="d64">64dp</dimen>
     <dimen name="d72">72dp</dimen>
 
+    <dimen name="md30">-30dp</dimen>
+
     <dimen name="icon">@dimen/d24</dimen>
     <dimen name="ico_size">@dimen/d48</dimen>
     <dimen name="avatar">@dimen/d40</dimen>

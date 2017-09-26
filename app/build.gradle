@@ -62,6 +62,12 @@ dependencies {
 
     compile 'com.google.code.gson:gson:2.8.1'
 
+    //Retrofit
+    compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    compile "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+    compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    compile "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+
     //UI
     compile 'com.roughike:bottom-bar:2.3.1'
     compile 'com.ncapdevi:frag-nav:2.0.2'

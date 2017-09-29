@@ -6,5 +6,5 @@ package com.vardemin.vcity.mvp.views;
  */
 
 public interface EventView extends BaseView {
-
+    void showLoading(boolean state);
 }

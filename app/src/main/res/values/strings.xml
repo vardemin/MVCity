@@ -28,4 +28,5 @@
     <string name="weak_password">Too weak password</string>
     <string name="messages">Messages</string>
     <string name="user">User</string>
+    <string name="add_event">New event</string>
 </resources>

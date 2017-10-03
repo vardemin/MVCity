@@ -25,4 +25,9 @@
     <string name="messages">Сообщения</string>
     <string name="user">Пользователь</string>
     <string name="add_event">Новое событие</string>
+    <string name="found_pattern">Найдено %1$d %2$s!</string>
+    <string name="add">Добавить</string>
+    <string name="plural_event">событий</string>
+    <string name="plural_meet">встреч</string>
+    <string name="plural_party">мероприятий</string>
 </resources>

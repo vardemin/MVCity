@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
-apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'me.tatarka.retrolambda'
 apply from: 'configuration.gradle'
 
 android {
@@ -12,6 +12,7 @@ android {
         targetSdkVersion project.targetSdkVersion
         versionCode project.versionCode
         versionName project.versionName
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -35,6 +36,8 @@ dependencies {
     compile "com.android.support:design:${supportLibraryVersion}"
     compile "com.android.support:cardview-v7:${supportLibraryVersion}"
     compile "com.android.support:recyclerview-v7:${supportLibraryVersion}"
+
+    compile 'com.ramotion.cardslider:card-slider:0.1.0'
 
     compile 'org.greenrobot:eventbus:3.0.0'
 

@@ -1,19 +1,30 @@
 package com.vardemin.vcity.ui.activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.res.ResourcesCompat;
+import android.util.Log;
+import android.view.View;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.ncapdevi.fragnav.FragNavController;
+import com.tapadoo.alerter.Alerter;
 import com.vardemin.vcity.R;
+import com.vardemin.vcity.eventbus.NavigationEvent;
 import com.vardemin.vcity.mvp.views.BaseView;
 import com.vardemin.vcity.ui.fragment.LifeFragment;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
@@ -24,6 +35,9 @@ public class MainActivity extends MvpAppCompatActivity implements FragNavControl
 
     @BindView(R.id.main_bottom_bar)
     TabLayout bottomBar;
+
+    @BindView(R.id.top_bar_btn_back)
+    View navBack;
 
     FragNavController fragNav;
 
@@ -41,6 +55,7 @@ public class MainActivity extends MvpAppCompatActivity implements FragNavControl
                 if (tab.getPosition()==0) {
                     fragNav.switchTab(0);
                 }
+                onNavigation();
             }
 
             @Override
@@ -57,6 +72,18 @@ public class MainActivity extends MvpAppCompatActivity implements FragNavControl
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
     public Fragment getRootFragment(int i) {
         switch (i) {
             case 0: return LifeFragment.getInstance();
@@ -66,6 +93,27 @@ public class MainActivity extends MvpAppCompatActivity implements FragNavControl
 
     @Override
     public void showError(String error) {
-        Snackbar.make(bottomBar,error,Snackbar.LENGTH_SHORT).show();
+        Alerter.create(this).setTitle(R.string.error).setText(error).show();
+        //Snackbar.make(bottomBar,error,Snackbar.LENGTH_SHORT).show();
     }
+
+    void onNavigation() {
+        navBack.setVisibility((fragNav.getCurrentStackIndex()>0)?View.VISIBLE: View.GONE);
+    }
+
+    @OnClick(R.id.top_bar_btn_back)
+    void onBack() {
+        fragNav.popFragment();
+        onNavigation();
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEvent(NavigationEvent event) {
+        Log.d("NAVIGATION EVENT",event.getNextRoute().name());
+        switch (event.getNextRoute()) {
+
+        }
+    }
+
+
 }

@@ -51,6 +51,15 @@ public class SplashPresenter extends MvpPresenter<SplashView> {
         this.remoteDataRepository.listenOn(Socket.EVENT_CONNECT_ERROR, onConnectionFailed);
 
     }
+    @Override
+    public void attachView(SplashView view) {
+        super.attachView(view);
+        if(remoteDataRepository.isConnected()) {
+            if (verified)
+                authenticate(localDataRepository.getToken());
+            else getViewState().setAuthorized(false);
+        }
+    }
 
  /*   @Override
     public void attachView(SplashView view) {

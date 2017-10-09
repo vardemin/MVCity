@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.tapadoo.alerter.Alerter;
 import com.vardemin.vcity.App;
 import com.vardemin.vcity.R;
 import com.vardemin.vcity.contract.SplashContract;
@@ -37,6 +38,8 @@ public class SplashActivity extends MvpAppCompatActivity implements SplashView{
 
     @Override
     public void showError(String error) {
-        Snackbar.make(findViewById(android.R.id.content),error, Snackbar.LENGTH_SHORT).show();
+        if(Alerter.isShowing()) Alerter.hide();
+            Alerter.create(this).setTitle(R.string.error).setText(error).show();
+        //Snackbar.make(findViewById(android.R.id.content),error, Snackbar.LENGTH_SHORT).show();
     }
 }

@@ -74,6 +74,7 @@ dependencies {
     //UI
     compile 'com.roughike:bottom-bar:2.3.1'
     compile 'com.ncapdevi:frag-nav:2.0.2'
+    compile 'com.tapadoo.android:alerter:2.0.1'
 
     compile "com.arello-mobile:moxy:${moxyVersion}"
     compile "com.arello-mobile:moxy-app-compat:${moxyVersion}"

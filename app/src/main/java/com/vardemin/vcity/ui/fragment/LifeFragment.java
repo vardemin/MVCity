@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.tapadoo.alerter.Alerter;
 import com.vardemin.vcity.R;
 import com.vardemin.vcity.mvp.presenters.LifePresenter;
 import com.vardemin.vcity.mvp.views.BaseView;
@@ -104,6 +105,13 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
         map.setMapStyle(
                 MapStyleOptions.loadRawResourceStyle(
                         getActivity(), R.raw.silver));
+        CircleOptions circleOptions = new CircleOptions()
+                .center(map.getCameraPosition().target)
+                .strokeColor(ContextCompat.getColor(getActivity(), R.color.colorAccent))
+                .strokeWidth(2f)
+                .fillColor(ContextCompat.getColor(getActivity(), R.color.circleFillAccent))
+                .radius(500);
+        field = map.addCircle(circleOptions);
 
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -151,13 +159,6 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 10);
         map.animateCamera(cameraUpdate);
         locationManager.removeUpdates(this);
-        CircleOptions circleOptions = new CircleOptions()
-                .center(latLng)
-                .strokeColor(ContextCompat.getColor(getActivity(), R.color.colorAccent))
-                .strokeWidth(2f)
-                .fillColor(ContextCompat.getColor(getActivity(), R.color.circleFillAccent))
-                .radius(500);
-        field = map.addCircle(circleOptions);
     }
 
     @Override

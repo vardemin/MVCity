@@ -17,7 +17,7 @@ ext {
     retrofitVersion = '2.2.0'
     okhttpVersion = '3.3.0'
 
-    butterKnifeVersion = '8.5.1'
+    butterKnifeVersion = '8.8.1'
     moxyVersion = '1.5.3'
 
     playServicesVersion = '11.2.2'

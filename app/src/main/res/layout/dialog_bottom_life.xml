@@ -1,33 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
+              android:orientation="horizontal"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:text="@string/found_pattern"/>
-
+              android:layout_height="wrap_content"
+              android:paddingLeft="@dimen/d8"
+              android:paddingRight="@dimen/d8"
+              app:behavior_hideable="true"
+              app:behavior_peekHeight="@dimen/d80"
+              app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
     <LinearLayout
-        android:layout_margin="@dimen/d16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/d80"
+        android:paddingLeft="@dimen/d8"
+        android:paddingRight="@dimen/d8"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/btn_expand"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/d80"
+            android:layout_weight="1"
+            android:text="@string/found_pattern"
+            android:drawableTop="@drawable/ic_double_arrow_up"
+            android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+
         <ImageView
+            android:id="@+id/btn_add"
             android:layout_width="@dimen/d72"
             android:layout_height="@dimen/d72"
             app:srcCompat="@drawable/ic_plus"/>
-        <android.support.v4.widget.Space
-            android:layout_width="@dimen/d72"
-            android:layout_height="@dimen/d72"/>
-        <ImageView
-            android:layout_width="@dimen/d72"
-            android:layout_height="@dimen/d72"
-            app:srcCompat="@drawable/ic_list"/>
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
 
 </LinearLayout>

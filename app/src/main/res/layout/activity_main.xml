@@ -10,11 +10,13 @@
         android:layout_height="@dimen/d40"
         android:paddingLeft="@dimen/d16"
         android:paddingRight="@dimen/d16">
+
         <ImageView
             android:id="@+id/top_bar_btn_back"
             android:layout_width="@dimen/d40"
             android:layout_height="@dimen/d40"
             android:padding="@dimen/d4"
+            android:visibility="gone"
             app:srcCompat="@drawable/ic_back"/>
 
         <TextView

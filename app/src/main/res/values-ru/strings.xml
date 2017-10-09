@@ -30,4 +30,5 @@
     <string name="plural_event">событий</string>
     <string name="plural_meet">встреч</string>
     <string name="plural_party">мероприятий</string>
+    <string name="error">Ошибка</string>
 </resources>

@@ -34,4 +34,5 @@
     <string name="plural_event">events</string>
     <string name="plural_meet">meets</string>
     <string name="plural_party">parties</string>
+    <string name="error">Error</string>
 </resources>

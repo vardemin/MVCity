@@ -1,74 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
-        android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:background="@color/colorWhite"
-        android:layout_height="@dimen/d40"
-        android:paddingLeft="@dimen/d16"
-        android:paddingRight="@dimen/d16">
-
-        <ImageView
-            android:id="@+id/top_bar_btn_back"
-            android:layout_width="@dimen/d40"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:background="@color/colorWhite"
             android:layout_height="@dimen/d40"
-            android:padding="@dimen/d4"
-            android:visibility="gone"
-            app:srcCompat="@drawable/ic_back"/>
+            android:paddingLeft="@dimen/d16"
+            android:paddingRight="@dimen/d16">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/top_bar_btn_back"
+                android:layout_width="@dimen/d40"
+                android:layout_height="@dimen/d40"
+                android:padding="@dimen/d4"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/blbrush"
+                android:text="VCity"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:typeface="normal"/>
+        </RelativeLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/main_bottom_bar"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/blbrush"
-            android:text="VCity"
-            android:textAlignment="center"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
-            android:typeface="normal"/>
+            android:layout_alignParentBottom="true"
+            app:tabIndicatorColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            app:tabGravity="fill">
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/ic_geo_marker"
+                />
+
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/ic_clock"
+                />
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/ic_message"
+                />
+            <android.support.design.widget.TabItem
+                android:icon="@drawable/ic_user"
+                />
+
+        </android.support.design.widget.TabLayout>
+        <!--<com.roughike.bottombar.BottomBar
+            android:id="@+id/main_bottom_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/d48"
+            android:layout_alignParentBottom="true"
+            app:bb_tabXmlResource="@xml/bottombar_tabs"
+            app:bb_inActiveTabAlpha="0.6"
+            app:bb_activeTabAlpha="1"
+            app:bb_inActiveTabColor="@color/colorDarkGrey"
+            app:bb_activeTabColor="@color/colorBlack"/>-->
+        <FrameLayout
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/main_bottom_bar"
+            android:layout_below="@id/top_bar"/>
     </RelativeLayout>
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/main_bottom_bar"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:tabIndicatorColor="@color/colorBlack"
-        android:layout_width="match_parent">
-
-        <android.support.design.widget.TabItem
-            android:icon="@drawable/ic_geo_marker"
-            />
-
-        <android.support.design.widget.TabItem
-            android:icon="@drawable/ic_clock"
-            />
-        <android.support.design.widget.TabItem
-            android:icon="@drawable/ic_message"
-            />
-        <android.support.design.widget.TabItem
-            android:icon="@drawable/ic_user"
-            />
-
-    </android.support.design.widget.TabLayout>
-    <!--<com.roughike.bottombar.BottomBar
-        android:id="@+id/main_bottom_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/d48"
-        android:layout_alignParentBottom="true"
-        app:bb_tabXmlResource="@xml/bottombar_tabs"
-        app:bb_inActiveTabAlpha="0.6"
-        app:bb_activeTabAlpha="1"
-        app:bb_inActiveTabColor="@color/colorDarkGrey"
-        app:bb_activeTabColor="@color/colorBlack"/>-->
-    <FrameLayout
-        android:id="@+id/main_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/main_bottom_bar"
-        android:layout_below="@id/top_bar"/>
 
 
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

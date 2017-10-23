@@ -72,6 +72,14 @@ public class MainActivity extends MvpAppCompatActivity implements FragNavControl
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (fragNav != null) {
+            fragNav.onSaveInstanceState(outState);
+        }
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);

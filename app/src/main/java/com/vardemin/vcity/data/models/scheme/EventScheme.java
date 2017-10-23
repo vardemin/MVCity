@@ -1,6 +1,8 @@
 package com.vardemin.vcity.data.models.scheme;
 
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class EventScheme{
     private UserScheme user;
     private Date occuredAt;
     private List<PhotoScheme> photos;
-    private List<Float> location;
+    private List<Double> location;
 
     public String getId() {
         return id;
@@ -42,7 +44,7 @@ public class EventScheme{
         return photos;
     }
 
-    public List<Float> getLocation() {
+    public List<Double> getLocation() {
         return location;
     }
 
@@ -54,7 +56,13 @@ public class EventScheme{
         this.photos = photos;
     }
 
-    public void setLocation(List<Float> location) {
+    public void setLocation(List<Double> location) {
         this.location = location;
+    }
+
+    public LatLng getLatLng() {
+        if (location.size()>1)
+            return new LatLng(location.get(0), location.get(1));
+        else return new LatLng(0,0);
     }
 }

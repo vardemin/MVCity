@@ -11,4 +11,20 @@ public class PhotoScheme {
     private String path;
     private UserScheme user;
     private Date createdAt;
+
+    public String getPath() {
+        return path;
+    }
+
+    public UserScheme getUser() {
+        return user;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public String get_id() {
+        return _id;
+    }
 }

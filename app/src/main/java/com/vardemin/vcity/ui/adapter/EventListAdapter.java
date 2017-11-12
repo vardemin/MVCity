@@ -12,8 +12,6 @@ import com.vardemin.vcity.data.models.scheme.EventScheme;
 
 import java.util.List;
 
-import butterknife.BindView;
-
 /**
  * Created by SimUser on 24.10.2017.
  */
@@ -28,7 +26,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_event,parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_image,parent, false);
         ViewHolder holder = new ViewHolder(view);
         int pos = holder.getAdapterPosition();
         if (pos!=RecyclerView.NO_POSITION) {

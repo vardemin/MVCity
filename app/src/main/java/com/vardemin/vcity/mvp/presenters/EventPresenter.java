@@ -27,4 +27,8 @@ public class EventPresenter extends MvpPresenter<EventView> {
 
         //remoteDataRepository.emit("events::create",);
     }
+
+    void callEventList() {
+
+    }
 }

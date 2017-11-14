@@ -4,9 +4,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
 import com.vardemin.vcity.R;
 import com.vardemin.vcity.data.models.scheme.EventScheme;
 import com.vardemin.vcity.data.models.scheme.PhotoScheme;
@@ -17,7 +14,7 @@ import java.util.List;
  * Created by vard on 12.11.17.
  */
 
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
+public class EventCardsAdapter extends RecyclerView.Adapter<CardHolder> {
 
     private List<EventScheme> schemes;
     private View.OnClickListener listener;
@@ -42,8 +39,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
 
     @Override
     public void onBindViewHolder(CardHolder holder, int position) {
+        if (schemes.get(position).getPhotos()==null) return;
         PhotoScheme photo = schemes.get(position).getPhotos().get(0);
-        if (photo!=null)
+        if ( photo!=null)
             holder.loadData(photo.getPath());
     }
 
@@ -52,20 +50,4 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardHolder> {
         return schemes.size();
     }
 
-    class CardHolder extends RecyclerView.ViewHolder {
-        private ImageView imgCard;
-
-        public CardHolder(View itemView) {
-            super(itemView);
-            imgCard = itemView.findViewById(R.id.image_card);
-        }
-
-        public void loadData(String url){
-            Picasso.with(imgCard.getContext()).load(url).into(imgCard);
-        }
-    }
-
-    interface CardItemListener {
-        void onCard(int position);
-    }
 }

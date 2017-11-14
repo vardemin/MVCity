@@ -79,6 +79,8 @@ dependencies {
     compile "com.arello-mobile:moxy:${moxyVersion}"
     compile "com.arello-mobile:moxy-app-compat:${moxyVersion}"
 
+    compile 'com.github.chrisbanes:PhotoView:2.0.0'
+
     //Play Services
     compile "com.google.android.gms:play-services-maps:${playServicesVersion}"
 

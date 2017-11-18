@@ -19,6 +19,11 @@ public class EventCardsAdapter extends RecyclerView.Adapter<CardHolder> {
     private List<EventScheme> schemes;
     private View.OnClickListener listener;
 
+    public EventCardsAdapter(List<EventScheme> schemes, View.OnClickListener listener) {
+        this.schemes = schemes;
+        this.listener = listener;
+    }
+
     @Override
     public CardHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View view = LayoutInflater

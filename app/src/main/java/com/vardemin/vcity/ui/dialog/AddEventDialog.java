@@ -16,7 +16,10 @@ import android.widget.ProgressBar;
 
 import com.tapadoo.alerter.Alerter;
 import com.vardemin.vcity.R;
+import com.vardemin.vcity.data.models.scheme.EventScheme;
 import com.vardemin.vcity.mvp.views.EventView;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,5 +86,10 @@ public class AddEventDialog extends DialogFragment implements EventView {
     @Override
     public void showLoading(boolean state) {
         progressBar.setVisibility(state?View.VISIBLE:View.GONE);
+    }
+
+    @Override
+    public void onEventList(List<EventScheme> schemes) {
+
     }
 }

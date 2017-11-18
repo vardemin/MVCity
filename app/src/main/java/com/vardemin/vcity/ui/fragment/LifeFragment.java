@@ -33,9 +33,12 @@ import com.vardemin.vcity.R;
 import com.vardemin.vcity.mvp.presenters.LifePresenter;
 import com.vardemin.vcity.mvp.views.BaseView;
 import com.vardemin.vcity.mvp.views.LifeView;
+import com.vardemin.vcity.ui.dialog.EventListDialog;
+import com.vardemin.vcity.util.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by xavie on 21.09.2017.
@@ -48,6 +51,7 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
     @InjectPresenter(type = PresenterType.WEAK, tag = LifePresenter.TAG)
     LifePresenter presenter;
 
+    @BindView(R.id.map)
     MapView mapView;
     GoogleMap map;
 
@@ -65,7 +69,8 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_life, container, false);
-        mapView = (MapView) rootView.findViewById(R.id.map);
+        //mapView = (MapView) rootView.findViewById(R.id.map);
+        ButterKnife.bind(this,rootView);
         mapView.onCreate(savedInstanceState);
 
         mapView.onResume(); // needed to get the map to display immediately
@@ -159,6 +164,7 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 10);
         map.animateCamera(cameraUpdate);
         locationManager.removeUpdates(this);
+        presenter.setLatLng(latLng);
     }
 
     @Override
@@ -181,6 +187,13 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
         if(field!=null) {
             LatLng loc = map.getCameraPosition().target;
             field.setCenter(loc);
+            presenter.setLatLng(loc);
         }
+    }
+
+    @OnClick(R.id.btn_events)
+    void onEvents() {
+        EventListDialog dialog = new EventListDialog();
+        dialog.show(getActivity().getSupportFragmentManager(), Constants.EVENT_SCREEN);
     }
 }

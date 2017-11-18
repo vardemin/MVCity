@@ -12,8 +12,12 @@ public class Constants {
     public static final String APP_PREFERENCES_LOGIN = "current_login";
     public static final String APP_PREFERENCES_PASSWORD = "current_password";
 
+    public static final String LAT = "LATITUDE";
+    public static final String LNG = "LONGTITUDE";
+
 
     public static final String LOGIN_SCREEN = "LOGIN_SCREEN";
+    public static final String EVENT_SCREEN = "EVENT_SCREEN";
     public static final String LOGIN_SUBSCREEN = "LOGIN_SUBSCREEN";
     public static final String REGISTRATION_SUBSCREEN = "REGISTRATION_SUBSCREEN";
     public static final String MAIN_SCREEN = "MAIN_SCREEN";

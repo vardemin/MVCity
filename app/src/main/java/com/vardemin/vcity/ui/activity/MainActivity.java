@@ -105,6 +105,11 @@ public class MainActivity extends MvpAppCompatActivity implements FragNavControl
         //Snackbar.make(bottomBar,error,Snackbar.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void showLoading(boolean state) {
+
+    }
+
     void onNavigation() {
         navBack.setVisibility((fragNav.getCurrentStackIndex()>0)?View.VISIBLE: View.GONE);
     }

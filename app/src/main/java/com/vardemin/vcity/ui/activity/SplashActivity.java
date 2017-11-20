@@ -42,4 +42,9 @@ public class SplashActivity extends MvpAppCompatActivity implements SplashView{
             Alerter.create(this).setTitle(R.string.error).setText(error).show();
         //Snackbar.make(findViewById(android.R.id.content),error, Snackbar.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void showLoading(boolean state) {
+
+    }
 }

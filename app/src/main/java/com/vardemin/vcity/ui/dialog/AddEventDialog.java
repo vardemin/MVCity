@@ -88,6 +88,7 @@ public class AddEventDialog extends DialogFragment implements EventView {
         progressBar.setVisibility(state?View.VISIBLE:View.GONE);
     }
 
+
     @Override
     public void onEventList(List<EventScheme> schemes) {
 

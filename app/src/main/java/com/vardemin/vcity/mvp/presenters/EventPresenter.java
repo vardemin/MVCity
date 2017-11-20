@@ -45,6 +45,7 @@ public class EventPresenter extends MvpPresenter<EventView> {
 
     public void callEventList() {
         try {
+            getViewState().showLoading(true);
             LatLng loc = localDataRepository.getLocation();
             Log.d("LOG", String.valueOf(loc.latitude) + " ; " + String.valueOf(loc.longitude));
             JSONObject jsonObject = new JSONObject();
@@ -57,10 +58,12 @@ public class EventPresenter extends MvpPresenter<EventView> {
                 @Override
                 public void onError(String message) {
                     Log.d("LOG", message);
+                    getViewState().showLoading(false);
                 }
 
                 @Override
                 public void onResult(JSONObject object) {
+                    getViewState().showLoading(false);
                     Log.d("LOG", object.toString());
                     try {
                         Type listType = new TypeToken<ArrayList<EventScheme>>(){}.getType();

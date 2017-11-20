@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,9 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -30,11 +34,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.tapadoo.alerter.Alerter;
 import com.vardemin.vcity.R;
+import com.vardemin.vcity.data.models.scheme.EventScheme;
+import com.vardemin.vcity.mvp.presenters.EventPresenter;
 import com.vardemin.vcity.mvp.presenters.LifePresenter;
 import com.vardemin.vcity.mvp.views.BaseView;
+import com.vardemin.vcity.mvp.views.EventView;
 import com.vardemin.vcity.mvp.views.LifeView;
 import com.vardemin.vcity.ui.dialog.EventListDialog;
 import com.vardemin.vcity.util.Constants;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,22 +53,38 @@ import butterknife.OnClick;
  * Created by xavie on 21.09.2017.
  */
 
-public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMapReadyCallback, LocationListener, GoogleMap.OnCameraIdleListener {
+public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMapReadyCallback, LocationListener, GoogleMap.OnCameraIdleListener, EventView {
     private static final int LOCATION_REQUEST_CODE = 77;
     private static final String MAP_TAG = "MAP";
 
     @InjectPresenter(type = PresenterType.WEAK, tag = LifePresenter.TAG)
     LifePresenter presenter;
 
+    @InjectPresenter(type = PresenterType.GLOBAL,tag = Constants.EVENT_SCREEN)
+    EventPresenter eventPresenter;
+
+    EventListDialog evetsListDialog;
+
+
     @BindView(R.id.map)
     MapView mapView;
     GoogleMap map;
+
+    @BindView(R.id.btn_events)
+    ImageView btnEvents;
+    @BindView(R.id.btn_meets)
+    ImageView btnMeets;
+    @BindView(R.id.btn_parties)
+    ImageView btnParties;
 
     private LocationManager locationManager;
     private static final long MIN_TIME = 400;
     private static final float MIN_DISTANCE = 1000;
 
     private Circle field;
+    private Animation bounce;
+
+    private boolean isLoading = false;
 
     public static LifeFragment getInstance() {
         return new LifeFragment();
@@ -74,6 +99,10 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
         mapView.onCreate(savedInstanceState);
 
         mapView.onResume(); // needed to get the map to display immediately
+
+        bounce = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
+
+        evetsListDialog = new EventListDialog();
 
         try {
             MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -101,6 +130,7 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
 
     @Override
     public void showError(String error) {
+        isLoading = false;
         ((BaseView) getActivity()).showError(error);
     }
 
@@ -193,7 +223,43 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
 
     @OnClick(R.id.btn_events)
     void onEvents() {
-        EventListDialog dialog = new EventListDialog();
-        dialog.show(getActivity().getSupportFragmentManager(), Constants.EVENT_SCREEN);
+        if(!isLoading) {
+            btnEvents.startAnimation(bounce);
+            eventPresenter.callEventList();
+        }
+
+        //dialog.show(getActivity().getSupportFragmentManager(), Constants.EVENT_SCREEN);
     }
+
+    @OnClick(R.id.btn_meets)
+    void onMeets() {
+        if(!isLoading) {
+            btnMeets.startAnimation(bounce);
+        }
+    }
+
+    @OnClick(R.id.btn_parties)
+    void onParties() {
+        if(!isLoading) {
+            btnParties.startAnimation(bounce);
+        }
+    }
+
+    //region EVENT VIEW
+    @Override
+    public void showLoading(boolean state) {
+        isLoading = state;
+    }
+
+
+    @Override
+    public void onEventList(List<EventScheme> schemes) {
+        isLoading = false;
+        if(evetsListDialog!=null) {
+            evetsListDialog.onEventList(schemes);
+            evetsListDialog.show(getActivity().getSupportFragmentManager(), Constants.EVENT_SCREEN);
+        }
+    }
+    //endregion
+
 }

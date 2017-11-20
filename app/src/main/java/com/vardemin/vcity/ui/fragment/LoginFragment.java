@@ -124,6 +124,11 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
         Snackbar.make(login_layout,error,Snackbar.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void showLoading(boolean state) {
+
+    }
+
     @OnClick(R.id.email_sign_in_button)
     public void onSubmit() {
         if (!login_input.getText().toString().equals("")&&!password_input.getText().toString().equals(""))

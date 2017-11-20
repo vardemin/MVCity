@@ -8,4 +8,5 @@ import com.arellomobile.mvp.MvpView;
 
 public interface BaseView extends MvpView {
     void showError(String error);
+    void showLoading(boolean state);
 }

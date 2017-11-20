@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextSwitcher;
+import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpDelegate;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -44,8 +45,8 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
     @BindView(R.id.switcher_description)
     TextSwitcher switcherDescription;
 
-    @InjectPresenter(type = PresenterType.GLOBAL,tag = Constants.EVENT_SCREEN)
-    EventPresenter presenter;
+    @BindView(R.id.btn_expand)
+    TextView header;
 
     EventCardsAdapter adapter;
 
@@ -58,8 +59,6 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getMvpDelegate().onCreate(savedInstanceState);
     }
 
 
@@ -68,7 +67,8 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_life_events_list, container, false);
         ButterKnife.bind(this, view);
-        presenter.callEventList();
+        if (schemes!=null)
+            header.setText(String.format(getString(R.string.found_pattern),schemes.size(),getString(R.string.plural_event)));
         return view;
     }
 
@@ -77,6 +77,7 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
     public void showLoading(boolean state) {
 
     }
+
 
     @Override
     public void onEventList(List<EventScheme> schemes) {
@@ -144,90 +145,5 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
                 onActiveCardChange(clickedPosition);
             }
         }
-    }
-
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        mIsStateSaved = false;
-
-        getMvpDelegate().onAttach();
-    }
-
-    public void onResume() {
-        super.onResume();
-
-        mIsStateSaved = false;
-
-        getMvpDelegate().onAttach();
-    }
-
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        mIsStateSaved = true;
-
-        getMvpDelegate().onSaveInstanceState(outState);
-        getMvpDelegate().onDetach();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        getMvpDelegate().onDetach();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        getMvpDelegate().onDetach();
-        getMvpDelegate().onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-
-        //We leave the screen and respectively all fragments will be destroyed
-        if (getActivity().isFinishing()) {
-            getMvpDelegate().onDestroy();
-            return;
-        }
-
-        // When we rotate device isRemoving() return true for fragment placed in backstack
-        // http://stackoverflow.com/questions/34649126/fragment-back-stack-and-isremoving
-        if (mIsStateSaved) {
-            mIsStateSaved = false;
-            return;
-        }
-
-        // See https://github.com/Arello-Mobile/Moxy/issues/24
-        boolean anyParentIsRemoving = false;
-
-        if (Build.VERSION.SDK_INT >= 17) {
-            Fragment parent = getParentFragment();
-            while (!anyParentIsRemoving && parent != null) {
-                anyParentIsRemoving = parent.isRemoving();
-                parent = parent.getParentFragment();
-            }
-        }
-
-        if (isRemoving() || anyParentIsRemoving) {
-            getMvpDelegate().onDestroy();
-        }
-    }
-
-
-    public MvpDelegate getMvpDelegate() {
-        if (mMvpDelegate == null) {
-            mMvpDelegate = new MvpDelegate<>(this);
-        }
-
-        return mMvpDelegate;
     }
 }

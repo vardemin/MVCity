@@ -173,6 +173,11 @@ public class RegistrationFragment extends MvpAppCompatFragment implements Regist
 
     }
 
+    @Override
+    public void showLoading(boolean state) {
+
+    }
+
     @OnClick(R.id.register_pick_date_btn)
     void pickDate() {
         Calendar calendar = Calendar.getInstance();

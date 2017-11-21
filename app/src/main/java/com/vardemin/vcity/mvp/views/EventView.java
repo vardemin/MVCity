@@ -12,5 +12,6 @@ import java.util.List;
  */
 @StateStrategyType(AddToEndSingleStrategy.class)
 public interface EventView extends BaseView {
+    void onEventPosted(EventScheme event);
     void onEventList(List<EventScheme> schemes);
 }

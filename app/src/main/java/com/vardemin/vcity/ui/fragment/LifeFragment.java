@@ -60,7 +60,7 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
     @InjectPresenter(type = PresenterType.WEAK, tag = LifePresenter.TAG)
     LifePresenter presenter;
 
-    @InjectPresenter(type = PresenterType.GLOBAL,tag = Constants.EVENT_SCREEN)
+    @InjectPresenter(type = PresenterType.WEAK,tag = EventPresenter.EVENT_LIST_TAG)
     EventPresenter eventPresenter;
 
     EventListDialog evetsListDialog;
@@ -251,6 +251,11 @@ public class LifeFragment extends MvpAppCompatFragment implements LifeView, OnMa
         isLoading = state;
     }
 
+
+    @Override
+    public void onEventPosted(EventScheme event) {
+
+    }
 
     @Override
     public void onEventList(List<EventScheme> schemes) {

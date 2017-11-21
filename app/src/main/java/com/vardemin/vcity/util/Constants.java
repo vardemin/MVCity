@@ -25,4 +25,6 @@ public class Constants {
     public static final String MEETS_SECTION = "MEETS_SECTION";
     public static final String MESSAGES_SECTION = "MESSAGE_SECTION";
     public static final String PROFILE_SECTION = "PROFILE_SECTION";
+
+    public static final int CODE_CHOOSE_PHOTO = 77;
 }

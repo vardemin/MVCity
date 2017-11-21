@@ -2,6 +2,7 @@ package com.vardemin.vcity.mvp.repositories.remote;
 
 
 import com.vardemin.vcity.data.models.Photo;
+import com.vardemin.vcity.data.models.scheme.PhotoScheme;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,7 +74,7 @@ public class RemoteDataRepository implements IRemoteDataRepository {
     }
 
     @Override
-    public Observable<Photo> uploadImage(MultipartBody.Part file, String token) {
+    public Observable<PhotoScheme> uploadImage(MultipartBody.Part file, String token) {
         return retrofit.create(RestService.class).uploadImage(file, token);
     }
 

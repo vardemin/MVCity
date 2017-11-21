@@ -1,6 +1,8 @@
 package com.vardemin.vcity.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.Snackbar;
@@ -14,9 +16,11 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.ncapdevi.fragnav.FragNavController;
 import com.tapadoo.alerter.Alerter;
 import com.vardemin.vcity.R;
+import com.vardemin.vcity.eventbus.ChoosePhotoEvent;
 import com.vardemin.vcity.eventbus.NavigationEvent;
 import com.vardemin.vcity.mvp.views.BaseView;
 import com.vardemin.vcity.ui.fragment.LifeFragment;
+import com.vardemin.vcity.util.Constants;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -125,6 +129,15 @@ public class MainActivity extends MvpAppCompatActivity implements FragNavControl
         Log.d("NAVIGATION EVENT",event.getNextRoute().name());
         switch (event.getNextRoute()) {
 
+        }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == Constants.CODE_CHOOSE_PHOTO) {
+                Uri selectedImageUri = data.getData();
+                EventBus.getDefault().postSticky(new ChoosePhotoEvent(selectedImageUri));
+            }
         }
     }
 

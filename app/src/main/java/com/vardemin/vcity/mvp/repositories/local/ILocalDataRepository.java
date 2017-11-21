@@ -12,6 +12,8 @@ public interface ILocalDataRepository {
     boolean verifyToken() throws Exception;
     void cacheToken(String token);
 
+    String getUserId();
+
     String getLogin();
     void cacheLogin(String login);
 

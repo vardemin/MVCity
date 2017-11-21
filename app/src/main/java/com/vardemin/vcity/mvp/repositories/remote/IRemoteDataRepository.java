@@ -2,6 +2,7 @@ package com.vardemin.vcity.mvp.repositories.remote;
 
 
 import com.vardemin.vcity.data.models.Photo;
+import com.vardemin.vcity.data.models.scheme.PhotoScheme;
 
 import io.reactivex.Observable;
 import io.socket.client.Ack;
@@ -19,5 +20,5 @@ public interface IRemoteDataRepository {
     void emit(String eventName, Object data, Ack ack);
     void emit(SocketResultListener listener, String eventName, Object... data);
 
-    Observable<Photo> uploadImage(MultipartBody.Part file, String token);
+    Observable<PhotoScheme> uploadImage(MultipartBody.Part file, String token);
 }

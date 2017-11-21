@@ -31,6 +31,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by vard on 14.11.17.
@@ -54,9 +55,6 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
     private CardSliderLayoutManager layoutManager;
     private int currentPosition;
 
-    private boolean mIsStateSaved;
-    private MvpDelegate<? extends EventListDialog> mMvpDelegate;
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -78,6 +76,11 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
 
     }
 
+
+    @Override
+    public void onEventPosted(EventScheme event) {
+
+    }
 
     @Override
     public void onEventList(List<EventScheme> schemes) {
@@ -108,6 +111,13 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
         int animV[] = new int[]{R.anim.slide_in_top, R.anim.slide_out_bottom};
 
         currentPosition = pos;
+    }
+
+    @OnClick(R.id.btn_add)
+    void onAddClick() {
+        AddEventDialog addEventDialog = new AddEventDialog();
+        addEventDialog.show(getActivity().getSupportFragmentManager(),EventPresenter.ADD_EVENT_TAG);
+        dismiss();
     }
 
 

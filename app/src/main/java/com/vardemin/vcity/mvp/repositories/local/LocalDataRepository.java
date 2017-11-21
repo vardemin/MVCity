@@ -49,6 +49,16 @@ public class LocalDataRepository implements ILocalDataRepository {
     }
 
     @Override
+    public String getUserId(){
+        try {
+            return JWTUtil.getStringFromBody(getToken(), "userId");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public String getLogin() {
         return preferences.getString(APP_PREFERENCES_LOGIN, "");
     }

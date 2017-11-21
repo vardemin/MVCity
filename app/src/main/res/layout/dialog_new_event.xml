@@ -4,89 +4,55 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_pick_photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_add_image"
-            android:orientation="horizontal">
-        </android.support.v7.widget.RecyclerView>
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/edit_name"
-            android:layout_width="match_parent"
-            android:layout_margin="@dimen/d12"
-            android:hint="Caption"
-            android:imeOptions="actionNext"
-            android:inputType="textShortMessage"
-            android:layout_height="wrap_content"/>
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/edit_description"
-            android:layout_width="match_parent"
-            android:layout_margin="@dimen/d12"
-            android:hint="Description"
-            android:inputType="textMultiLine"
-            android:layout_height="wrap_content"/>
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/d12"
-            android:textStyle="bold"
-            android:background="@color/colorBack"
-            android:text="01.01.1999 18:15"/>
-        <android.support.v7.widget.AppCompatCheckBox
-            android:id="@+id/check_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/d12"
-            android:text="Use my current location"/>
-
         <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/d12"
-            android:orientation="vertical">
-            <LinearLayout
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Radius(m): "/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1"/>
-            </LinearLayout>
-            <android.support.v7.widget.AppCompatSeekBar
-                android:id="@+id/seek_radius"
+                android:layout_height="210dp"
+                android:clipChildren="false"
+                android:overScrollMode="never"
+                app:layoutManager="com.ramotion.cardslider.CardSliderLayoutManager"
+                app:viewUpdater="com.vardemin.vcity.util.CardsUpdater">
+            </android.support.v7.widget.RecyclerView>
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edit_name"
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/d12"
+                android:hint="@string/title"
+                android:imeOptions="actionNext"
+                android:inputType="textShortMessage"
+                android:layout_height="wrap_content"/>
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edit_description"
+                android:layout_width="match_parent"
+                android:layout_margin="@dimen/d12"
+                android:hint="@string/description"
+                android:inputType="textMultiLine"
+                android:layout_height="wrap_content"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/d12"
-                android:thumbTint="@color/colorDarkGrey"
-                android:max="99"
-                />
+                android:textStyle="bold"
+                android:background="@color/colorBack"
+                android:text="01.01.1999 18:15"/>
+
+            <Button
+                android:id="@+id/btn_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorBlack"
+                android:textColor="@color/colorWhite"
+                android:text="@string/action_post"/>
+
         </LinearLayout>
-        <Button
-            android:id="@+id/btn_post"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorBlack"
-            android:textColor="@color/colorWhite"
-            android:text="POST"/>
-
-    </LinearLayout>
-
     <ProgressBar
         android:id="@+id/progress"
         android:layout_width="match_parent"
@@ -94,5 +60,5 @@
         android:background="@color/overWindow"
         android:padding="@dimen/d64"
         android:visibility="gone"/>
-    
+
 </RelativeLayout>

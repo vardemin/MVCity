@@ -35,4 +35,8 @@
     <string name="plural_meet">meets</string>
     <string name="plural_party">parties</string>
     <string name="error">Error</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="action_post">POST</string>
+    <string name="warning">Warning</string>
 </resources>

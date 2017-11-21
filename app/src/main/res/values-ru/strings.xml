@@ -31,4 +31,8 @@
     <string name="plural_meet">встреч</string>
     <string name="plural_party">мероприятий</string>
     <string name="error">Ошибка</string>
+    <string name="title">Заголовок</string>
+    <string name="description">Описание</string>
+    <string name="action_post">Запостить</string>
+    <string name="warning">Внимание</string>
 </resources>

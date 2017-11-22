@@ -67,7 +67,9 @@ public class EventPresenter extends MvpPresenter<EventView> {
             JSONObject jsonObject = new JSONObject();
             //JSONUtil.setNear(jsonObject,loc,1000);
 
-            jsonObject.put("location", new JSONObject("{ $nearSphere: ["+String.valueOf(loc.latitude)+","+String.valueOf(loc.longitude)+"], $maxDistance: 1000 }"));
+            float maxDistance = 1/6371;
+
+            jsonObject.put("location", new JSONObject("{ $nearSphere: ["+String.valueOf(loc.latitude)+","+String.valueOf(loc.longitude)+"], $maxDistance:"+String.valueOf(1d/6371d)+" }"));
             Log.d("LOG JSON", jsonObject.toString());
             remoteDataRepository.emit(new SocketResultListener() {
 

@@ -131,10 +131,12 @@ public class MainActivity extends MvpAppCompatActivity implements FragNavControl
 
         }
     }
-
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("LOG","ACTIVITY RESULT");
         if (resultCode == RESULT_OK) {
             if (requestCode == Constants.CODE_CHOOSE_PHOTO) {
+                Log.d("LOG","CHOOSE PHOTO");
                 Uri selectedImageUri = data.getData();
                 EventBus.getDefault().postSticky(new ChoosePhotoEvent(selectedImageUri));
             }

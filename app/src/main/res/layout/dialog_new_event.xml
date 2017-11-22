@@ -3,7 +3,8 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                app:behavior_peekHeight="@dimen/d80">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -13,7 +14,7 @@
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
-                android:clipChildren="false"
+
                 android:overScrollMode="never"
                 app:layoutManager="com.ramotion.cardslider.CardSliderLayoutManager"
                 app:viewUpdater="com.vardemin.vcity.util.CardsUpdater">
@@ -22,7 +23,7 @@
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/edit_name"
                 android:layout_width="match_parent"
-                android:layout_margin="@dimen/d12"
+                android:layout_margin="@dimen/d8"
                 android:hint="@string/title"
                 android:imeOptions="actionNext"
                 android:inputType="textShortMessage"
@@ -30,19 +31,36 @@
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/edit_description"
                 android:layout_width="match_parent"
-                android:layout_margin="@dimen/d12"
+                android:layout_margin="@dimen/d8"
                 android:hint="@string/description"
                 android:inputType="textMultiLine"
                 android:layout_height="wrap_content"/>
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_date"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/d12"
-                android:textStyle="bold"
-                android:background="@color/colorBack"
-                android:text="01.01.1999 18:15"/>
+                android:orientation="horizontal">
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="@dimen/d8"
+                    android:textStyle="bold"
+                    android:background="@color/colorBack"
+                    android:text="01.01.1999"/>
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/d8"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:background="@color/colorBack"
+                    android:text="18:15"/>
+            </LinearLayout>
+
+
 
             <Button
                 android:id="@+id/btn_post"

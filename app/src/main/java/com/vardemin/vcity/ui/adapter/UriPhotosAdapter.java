@@ -16,6 +16,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by vard on 21.11.17.
@@ -25,9 +26,9 @@ public class UriPhotosAdapter extends RecyclerView.Adapter<UriPhotosAdapter.Phot
 
     private List<Uri> photos;
     private Context context;
-    private View.OnClickListener listener;
+    private UriAdapterListener listener;
 
-    public UriPhotosAdapter(List<Uri> photos, Context context, View.OnClickListener listener) {
+    public UriPhotosAdapter(List<Uri> photos, Context context, UriAdapterListener listener) {
         this.photos = photos;
         this.context = context;
         this.listener = listener;
@@ -35,9 +36,11 @@ public class UriPhotosAdapter extends RecyclerView.Adapter<UriPhotosAdapter.Phot
 
     @Override
     public PhotoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_image,parent, false);
-        if(listener!=null)
-            view.setOnClickListener(listener);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_add_image,parent, false);
+        /*if(listener!=null) {
+            view.findViewById(R.id.btn_add).setOnClickListener(listener);
+            view.findViewById(R.id.btn_close).setOnClickListener(listener);
+        }*/
         return new PhotoHolder(view);
     }
 
@@ -46,7 +49,7 @@ public class UriPhotosAdapter extends RecyclerView.Adapter<UriPhotosAdapter.Phot
         Uri uri = photos.get(position);
 
         if (uri!=null) {
-            Picasso.with(context).load(uri).centerCrop().into(holder.img);
+            holder.img.setImageURI(uri);
             holder.btnClose.setVisibility(View.VISIBLE);
             holder.btnAdd.setVisibility(View.GONE);
         }
@@ -55,6 +58,18 @@ public class UriPhotosAdapter extends RecyclerView.Adapter<UriPhotosAdapter.Phot
             holder.btnClose.setVisibility(View.GONE);
             holder.btnAdd.setVisibility(View.VISIBLE);
         }
+        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onAdd(position);
+            }
+        });
+        holder.btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onClose(position);
+            }
+        });
     }
 
     @Override
@@ -74,5 +89,11 @@ public class UriPhotosAdapter extends RecyclerView.Adapter<UriPhotosAdapter.Phot
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+
+    }
+
+    public interface UriAdapterListener {
+        void onAdd(int position);
+        void onClose(int position);
     }
 }

@@ -12,14 +12,22 @@ import java.util.Locale;
  */
 
 public class DateUtil {
+
     public static String getStrFromDate(Date date) {
         DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return format.format(date);
     }
+
+    public static String getTimeStrFromDate(Date date) {
+        DateFormat format = new SimpleDateFormat("HH:mm");
+        return format.format(date);
+    }
+
     public static Date getDateFromStr(String date) throws ParseException {
         DateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         return format.parse(date);
     }
+
     public static boolean isAdult(Date date) {
         Calendar now = Calendar.getInstance();
         Calendar birthCal = Calendar.getInstance();

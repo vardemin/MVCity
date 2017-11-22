@@ -1,6 +1,8 @@
 package com.vardemin.vcity.mvp.presenters;
 
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
@@ -109,19 +111,26 @@ public class EventPresenter extends MvpPresenter<EventView> {
             location.put(localDataRepository.getLocation().longitude);
             object.put("location", location);
 
+            Log.d("LOG", "CREATE EVENT OBJECT : " + object.toString());
+
             remoteDataRepository.emit(new SocketResultListener() {
                 @Override
                 public void onError(String message) {
-                    getViewState().showLoading(false);
-                    getViewState().showError(message);
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            getViewState().showLoading(false);
+                            getViewState().showError(message);
+                        }
+                    });
                     Log.d("LOG ERROR", message);
                 }
 
                 @Override
                 public void onResult(JSONObject object) {
-                    try {
-
-                        EventScheme event = new Gson().fromJson(object.getJSONObject("data").toString(), EventScheme.class);
+                    //try {
+                        Log.d("LOG", "CREATED OBJECT RETURNED SCHEME");
+                        EventScheme event = new Gson().fromJson(object.toString(), EventScheme.class);
                         if (event!=null)
                             getViewState().onEventPosted(event);
                         if (photos.size()>0) {
@@ -136,15 +145,26 @@ public class EventPresenter extends MvpPresenter<EventView> {
                                         });
                             }*/
                         }
-                        getViewState().showLoading(false);
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                getViewState().showLoading(false);
+                            }
+                        });
 
-                    } catch (JSONException e) {
+
+                    /*} catch (JSONException e) {
                         e.printStackTrace();
-                        getViewState().showLoading(false);
-                    }
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                getViewState().showLoading(false);
+                            }
+                        });
+                    }*/
 
                 }
-            }, "events:create", object);
+            }, "events::create", object);
 
         } catch (JSONException e) {
             e.printStackTrace();

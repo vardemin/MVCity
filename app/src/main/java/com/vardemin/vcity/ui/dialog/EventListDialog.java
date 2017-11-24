@@ -19,6 +19,7 @@ import com.arellomobile.mvp.MvpDelegate;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.PresenterType;
 import com.ramotion.cardslider.CardSliderLayoutManager;
+import com.ramotion.cardslider.CardSnapHelper;
 import com.vardemin.vcity.R;
 import com.vardemin.vcity.data.models.scheme.EventScheme;
 import com.vardemin.vcity.mvp.presenters.EventPresenter;
@@ -37,7 +38,7 @@ import butterknife.OnClick;
  * Created by vard on 14.11.17.
  */
 
-public class EventListDialog extends BottomSheetDialogFragment implements EventView{
+public class EventListDialog extends BottomSheetDialogFragment implements EventView {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -49,7 +50,7 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
     @BindView(R.id.btn_expand)
     TextView header;
 
-    EventCardsAdapter adapter;
+    private EventCardsAdapter adapter;
 
     private List<EventScheme> schemes;
     private CardSliderLayoutManager layoutManager;
@@ -65,8 +66,25 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_life_events_list, container, false);
         ButterKnife.bind(this, view);
-        if (schemes!=null)
-            header.setText(String.format(getString(R.string.found_pattern),schemes.size(),getString(R.string.plural_event)));
+        if (schemes!=null) {
+            header.setText(String.format(getString(R.string.found_pattern), schemes.size(), getString(R.string.plural_event)));
+
+            recyclerView.setLayoutManager(new CardSliderLayoutManager(getContext()));
+            recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        onActiveCardChange();
+                    }
+                }
+            });
+            recyclerView.setAdapter(adapter);
+            recyclerView.setHasFixedSize(true);
+            layoutManager = (CardSliderLayoutManager) recyclerView.getLayoutManager();
+            new CardSnapHelper().attachToRecyclerView(recyclerView);
+            onActiveCardChange(0);
+        }
+
         return view;
     }
 
@@ -109,6 +127,14 @@ public class EventListDialog extends BottomSheetDialogFragment implements EventV
     private void onActiveCardChange(int pos) {
         int animH[] = new int[]{R.anim.slide_in_right, R.anim.slide_out_left};
         int animV[] = new int[]{R.anim.slide_in_top, R.anim.slide_out_bottom};
+
+        switcherName.setInAnimation(getContext(), animV[0]);
+        switcherName.setOutAnimation(getContext(), animV[1]);
+        switcherName.setText(schemes.get(pos).getName());
+
+        switcherDescription.setInAnimation(getContext(), animV[0]);
+        switcherDescription.setOutAnimation(getContext(), animV[1]);
+        switcherDescription.setText(schemes.get(pos).getDescription());
 
         currentPosition = pos;
     }

@@ -35,4 +35,5 @@
     <string name="description">Описание</string>
     <string name="action_post">Запостить</string>
     <string name="warning">Внимание</string>
+    <string name="event">Событие</string>
 </resources>

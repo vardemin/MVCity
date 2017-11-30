@@ -5,7 +5,7 @@ package com.vardemin.vcity.util;
  */
 
 public class Constants {
-    public static final String SERVER_URL = "http://192.168.1.80:3030";
+    public static String SERVER_URL = "http://192.168.1.80:3030";
 
     public static final String APP_PREFERENCES = "mvcity_pref";
     public static final String APP_PREFERENCES_TOKEN = "access_token";
